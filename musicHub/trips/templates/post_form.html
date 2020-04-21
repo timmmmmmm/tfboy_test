@@ -1,0 +1,277 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<!-- Basic -->
+{% load static %}
+<head>
+  <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">   
+   
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+     <!-- Site Metas -->
+    <title>MusicHub</title>  
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Site Icons -->
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+    <link rel="apple-touch-icon" href="{% static 'images/apple-touch-icon.png' %}">
+ 
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">    
+  <!-- Site CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">    
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+  <!-- Start header -->
+  <header class="top-navbar">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container">
+        <a class="navbar-brand" href="{% url 'index' %}">
+          <img src="{% static 'images/logo.png' %}" alt="" />
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars-rs-food" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbars-rs-food">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active"><a class="nav-link" href="{% url 'index' %}">首頁</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'produce' %}">創作區</a></li>
+            <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">論壇</a>
+                      <div class="dropdown-menu" aria-labelledby="dropdown-a">
+                      {% if user.is_authenticated %}
+                      <a class="dropdown-item" href="/userinfo/">帳號管理</a>
+                      <a class="dropdown-item" href="/forum/">論壇</a>
+                      <a class="dropdown-item" href="/logout/">登出</a>
+                      <a class="dropdown-item" href="/message/all">個人通知</a>
+                      {% else %}
+                      <a class="dropdown-item" href="/regist/">註冊</a>
+                      <a class="dropdown-item" href="/login/">登入</a>
+                      <a class="dropdown-item" href="/forum/">論壇</a>
+                      {% endif %}
+            <li class="nav-item"><a class="nav-link" href="{% url 'database' %}">音樂庫</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'intro' %}">關於我們</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <!-- End header -->
+  
+  <!-- Start All Pages -->
+  
+  <!-- End All Pages -->
+  
+  <!-- Start Contact -->
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<div style=" margin-left:400px">
+  <font size
+  ='8'><b>新增文章</b></font>
+<form enctype="multipart/form-data" method='POST' >
+{% csrf_token %}
+
+    有<font size="5px"color="red">*</font></h2>為必填選項
+    作者:{{ user.username }} 
+    <p><label for="id_title">標題<font color="red">*</font>:</label>
+    <input id="id_title" type="text" name="title" maxlength="100"  required></p>
+
+    <p><label for="id_subtitle">副標題</label>
+    <input id="id_subtitle" type="text" name="subtitle" maxlength="100"></p>
+
+    <p><label for="id_content" style="vertical-align: top;" >內容<font color="red">*</font>:</label>
+    <textarea id="id_content" size="50" type="textarea"  rows="10" cols="100" name="content" minlength="50" required></textarea>
+    <!--<input id="id_content" size="50" type="textarea"  rows="4" cols="50" name="content" required></p>-->
+
+    <p><label for="id_category">類別<font color="red">*</font>:</label>
+        <select name="category">
+          <option value="chat">閒聊版</option>
+    <option value="symphony">交響曲</option>
+　<option value="sonata">奏鳴曲</option>
+　<option value="chorus">合唱</option>
+　<option value="opera">歌劇</option>
+<option value="concerto">協奏曲</option>
+<option value="modern">流行樂</option>
+<option value="trade">樂器買賣</option>
+<option value="others">樂器保養</option></select>
+
+    <p><label for="id_post_pic">請選擇要上傳的圖片</label>
+    <input id="id_post_pic" type="file" accept="image/*" name="post_pic"></p>
+
+    <p><label for="id_document">請選擇要上傳的音樂或是文件</label>
+    <input id="id_document" type="file" name="document"></p>
+
+
+
+<button type="submit" style='position:absolute;left: 1000px;'>新增文章</button>
+</form></div>
+  <br/><br/><br/>
+  <!-- Start Contact info -->
+  <!-- Start Contact info -->
+  <div class="contact-imfo-box">
+    <div class="container">
+      <!--<div class="row">
+        <div class="col-md-4">
+          <i class="fa fa-volume-control-phone"></i>
+          <div class="overflow-hidden">
+            <h4>Phone</h4>
+            <p class="lead">
+              +01 123-456-4590
+            </p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <i class="fa fa-envelope"></i>
+          <div class="overflow-hidden">
+            <h4>Email</h4>
+            <p class="lead">
+              yourmail@gmail.com
+            </p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <i class="fa fa-map-marker"></i>
+          <div class="overflow-hidden">
+            <h4>Location</h4>
+            <p class="lead">
+              800, Lorem Street, US
+            </p>
+          </div>
+        </div>
+      </div>-->
+    </div>
+  </div>
+  <!-- End Contact info -->
+  
+  <!-- Start Footer -->
+  <footer class="footer-area bg-f">
+    <div class="container">
+      <div class="row">
+        <div><p><br></p></div>
+        <!--<div class="col-lg-3 col-md-6">
+          <h3>About Us</h3>
+          <p>Integer cursus scelerisque ipsum id efficitur. Donec a dui fringilla, gravida lorem ac, semper magna. Aenean rhoncus ac lectus a interdum. Vivamus semper posuere dui, at ornare turpis ultrices sit amet. Nulla cursus lorem ut nisi porta, ac eleifend arcu ultrices.</p>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <h3>Opening hours</h3>
+          <p><span class="text-color">Monday: </span>Closed</p>
+          <p><span class="text-color">Tue-Wed :</span> 9:Am - 10PM</p>
+          <p><span class="text-color">Thu-Fri :</span> 9:Am - 10PM</p>
+          <p><span class="text-color">Sat-Sun :</span> 5:PM - 10PM</p>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <h3>Contact information</h3>
+          <p class="lead">Ipsum Street, Lorem Tower, MO, Columbia, 508000</p>
+          <p class="lead"><a href="#">+01 2000 800 9999</a></p>
+          <p><a href="#"> info@admin.com</a></p>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <h3>Subscribe</h3>
+          <div class="subscribe_form">
+            <form class="subscribe_form">
+              <input name="EMAIL" id="subs-email" class="form_input" placeholder="Email Address..." type="email">
+              <button type="submit" class="submit">SUBSCRIBE</button>
+              <div class="clearfix"></div>
+            </form>
+          </div>
+          <ul class="list-inline f-social">
+            <li class="list-inline-item"><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+            <li class="list-inline-item"><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+            <li class="list-inline-item"><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+            <li class="list-inline-item"><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+            <li class="list-inline-item"><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+          </ul>
+        </div>-->
+      </div>
+    </div>
+    
+  </footer>
+  <!-- End Footer -->
+  
+  <a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
+
+  <!-- ALL JS FILES -->
+  <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+  <script src="{% static 'js/popper.min.js' %}"></script>
+  <script src="{% static 'js/bootstrap.min.js' %}"></script>
+  {% if user.is_authenticated %}
+            <script>
+var logoutUser = false;
+var timeoutHnd = null;
+var logouTimeInterval = 300000;// Three Second
+function onuser_activite(){
+    if(logoutUser){
+;
+    }
+    else{
+        ResetLogOutTimer();
+    }
+}
+function OnTimeoutReached(){
+logoutUser = true;
+    alert("因為你閒置頁面過久，我們就先登出了喔!");
+    window.location.href="/logout";
+
+}
+function ResetLogOutTimer(){
+clearTimeout(timeoutHnd);
+// set new timer
+timeoutHnd = setTimeout('OnTimeoutReached();',logouTimeInterval);
+}
+
+
+</script>
+<script>document.body.onclick = onuser_activite;
+    timeoutHnd = setTimeout('OnTimeoutReached();',logouTimeInterval);
+    </script>
+{% else %}
+        
+            {% endif %}
+
+    <!-- ALL PLUGINS -->
+  
+  <script src="{% static 's/jquery.superslides.min.js' %}"></script>
+  <script src="{% static 'js/images-loded.min.js' %}"></script>
+  <script src="{% static 'js/isotope.min.js' %}"></script>
+  <script src="{% static 'js/baguetteBox.min.js' %}"></script>
+  <script src="{% static 'js/jquery.mapify.js' %}"></script>
+  <script src="{% static 'js/form-validator.min.js' %}"></script>
+    <script src="{% static 'js/contact-form-script.js' %}"></script>
+    <script src="{% static 'js/custom.js' %}"></script>
+  <script>
+    $('.map-full').mapify({
+      points: [
+        {
+          lat: 40.7143528,
+          lng: -74.0059731,
+          marker: true,
+          title: 'Marker title',
+          infoWindow: 'Yamifood Restaurant'
+        }
+      ]
+    }); 
+  </script>
+</body>
+</html>
+
+

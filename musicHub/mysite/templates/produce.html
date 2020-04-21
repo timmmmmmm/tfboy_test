@@ -1,0 +1,1778 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <!-- Site Metas --> 
+  <meta name="keywords" content="">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="icon" href="/favicon.ico">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css" rel="stylesheet">
+  <title>MusicHub</title>
+  <link href="{% static 'css/produce_tim.css' %}" rel="preload" as="style">
+  <link href="{% static 'js/produce_tim.js' %}" rel="preload" as="script">
+  <link href="{% static 'js/act_tim.js' %}" rel="preload" as="script">
+  <link href="{% static 'css/produce_tim.css' %}" rel="stylesheet">
+  <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min_tim.css' %}">    
+  <!-- Site CSS -->
+    <link rel="stylesheet" href="{% static 'css/style_tim.css' %}">    
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="{% static 'css/responsive_tim.css' %}">
+    <!-- Custom CSS -->
+    <!--<link rel="stylesheet" href="{% static 'css/custom.css' %}">-->
+  <script async="" src="https://www.google-analytics.com/analytics.js" charset="utf-8"></script>
+  <style type="text/css" id="vuetify-theme-stylesheet">
+    .v-application a { color: #1976d2; }
+    .v-application .primary {
+      background-color: #1976d2 !important;
+      border-color: #1976d2 !important;
+    }
+    .v-application .primary--text {
+      color: #1976d2 !important;
+      caret-color: #1976d2 !important;
+    }
+    .v-application .primary.lighten-5 {
+      background-color: #c7fdff !important;
+      border-color: #c7fdff !important;
+    }
+    .v-application .primary--text.text--lighten-5 {
+      color: #c7fdff !important;
+      caret-color: #c7fdff !important;
+    }
+    .v-application .primary.lighten-4 {
+      background-color: #a8e0ff !important;
+      border-color: #a8e0ff !important;
+    }
+    .v-application .primary--text.text--lighten-4 {
+      color: #a8e0ff !important;
+      caret-color: #a8e0ff !important;
+    }
+    .v-application .primary.lighten-3 {
+      background-color: #8ac5ff !important;
+      border-color: #8ac5ff !important;
+    }
+    .v-application .primary--text.text--lighten-3 {
+      color: #8ac5ff !important;
+      caret-color: #8ac5ff !important;
+    }
+    .v-application .primary.lighten-2 {
+      background-color: #6aaaff !important;
+      border-color: #6aaaff !important;
+    }
+    .v-application .primary--text.text--lighten-2 {
+      color: #6aaaff !important;
+      caret-color: #6aaaff !important;
+    }
+    .v-application .primary.lighten-1 {
+      background-color: #488fef !important;
+      border-color: #488fef !important;
+    }
+    .v-application .primary--text.text--lighten-1 {
+      color: #488fef !important;
+      caret-color: #488fef !important;
+    }
+    .v-application .primary.darken-1 {
+      background-color: #005eb6 !important;
+      border-color: #005eb6 !important;
+    }
+    .v-application .primary--text.text--darken-1 {
+      color: #005eb6 !important;
+      caret-color: #005eb6 !important;
+    }
+    .v-application .primary.darken-2 {
+      background-color: #00479b !important;
+      border-color: #00479b !important;
+    }
+    .v-application .primary--text.text--darken-2 {
+      color: #00479b !important;
+      caret-color: #00479b !important;
+    }
+    .v-application .primary.darken-3 {
+      background-color: #003180 !important;
+      border-color: #003180 !important;
+    }
+    .v-application .primary--text.text--darken-3 {
+      color: #003180 !important;
+      caret-color: #003180 !important;
+    }
+    .v-application .primary.darken-4 {
+      background-color: #001e67 !important;
+      border-color: #001e67 !important;
+    }
+    .v-application .primary--text.text--darken-4 {
+      color: #001e67 !important;
+      caret-color: #001e67 !important;
+    }
+    .v-application .secondary {
+      background-color: #424242 !important;
+      border-color: #424242 !important;
+    }
+    .v-application .secondary--text {
+      color: #424242 !important;
+      caret-color: #424242 !important;
+    }
+    .v-application .secondary.lighten-5 {
+      background-color: #c1c1c1 !important;
+      border-color: #c1c1c1 !important;
+    }
+    .v-application .secondary--text.text--lighten-5 {
+      color: #c1c1c1 !important;
+      caret-color: #c1c1c1 !important;
+    }
+    .v-application .secondary.lighten-4 {
+      background-color: #a6a6a6 !important;
+      border-color: #a6a6a6 !important;
+    }
+    .v-application .secondary--text.text--lighten-4 {
+      color: #a6a6a6 !important;
+      caret-color: #a6a6a6 !important;
+    }
+    .v-application .secondary.lighten-3 {
+      background-color: #8b8b8b !important;
+      border-color: #8b8b8b !important;
+    }
+    .v-application .secondary--text.text--lighten-3 {
+      color: #8b8b8b !important;
+      caret-color: #8b8b8b !important;
+    }
+    .v-application .secondary.lighten-2 {
+      background-color: #727272 !important;
+      border-color: #727272 !important;
+    }
+    .v-application .secondary--text.text--lighten-2 {
+      color: #727272 !important;
+      caret-color: #727272 !important;
+    }
+    .v-application .secondary.lighten-1 {
+      background-color: #595959 !important;
+      border-color: #595959 !important;
+    }
+    .v-application .secondary--text.text--lighten-1 {
+      color: #595959 !important;
+      caret-color: #595959 !important;
+    }
+    .v-application .secondary.darken-1 {
+      background-color: #2c2c2c !important;
+      border-color: #2c2c2c !important;
+    }
+    .v-application .secondary--text.text--darken-1 {
+      color: #2c2c2c !important;
+      caret-color: #2c2c2c !important;
+    }
+    .v-application .secondary.darken-2 {
+      background-color: #171717 !important;
+      border-color: #171717 !important;
+    }
+    .v-application .secondary--text.text--darken-2 {
+      color: #171717 !important;
+      caret-color: #171717 !important;
+    }
+    .v-application .secondary.darken-3 {
+      background-color: #000000 !important;
+      border-color: #000000 !important;
+    }
+    .v-application .secondary--text.text--darken-3 {
+      color: #000000 !important;
+      caret-color: #000000 !important;
+    }
+    .v-application .secondary.darken-4 {
+      background-color: #000000 !important;
+      border-color: #000000 !important;
+    }
+    .v-application .secondary--text.text--darken-4 {
+      color: #000000 !important;
+      caret-color: #000000 !important;
+    }
+    .v-application .accent {
+      background-color: #82b1ff !important;
+      border-color: #82b1ff !important;
+    }
+    .v-application .accent--text {
+      color: #82b1ff !important;
+      caret-color: #82b1ff !important;
+    }
+    .v-application .accent.lighten-5 {
+      background-color: #ffffff !important;
+      border-color: #ffffff !important;
+    }
+    .v-application .accent--text.text--lighten-5 {
+      color: #ffffff !important;
+      caret-color: #ffffff !important;
+    }
+    .v-application .accent.lighten-4 {
+      background-color: #f8ffff !important;
+      border-color: #f8ffff !important;
+    }
+    .v-application .accent--text.text--lighten-4 {
+      color: #f8ffff !important;
+      caret-color: #f8ffff !important;
+    }
+    .v-application .accent.lighten-3 {
+      background-color: #daffff !important;
+      border-color: #daffff !important;
+    }
+    .v-application .accent--text.text--lighten-3 {
+      color: #daffff !important;
+      caret-color: #daffff !important;
+    }
+    .v-application .accent.lighten-2 {
+      background-color: #bce8ff !important;
+      border-color: #bce8ff !important;
+    }
+    .v-application .accent--text.text--lighten-2 {
+      color: #bce8ff !important;
+      caret-color: #bce8ff !important;
+    }
+    .v-application .accent.lighten-1 {
+      background-color: #9fccff !important;
+      border-color: #9fccff !important;
+    }
+    .v-application .accent--text.text--lighten-1 {
+      color: #9fccff !important;
+      caret-color: #9fccff !important;
+    }
+    .v-application .accent.darken-1 {
+      background-color: #6596e2 !important;
+      border-color: #6596e2 !important;
+    }
+    .v-application .accent--text.text--darken-1 {
+      color: #6596e2 !important;
+      caret-color: #6596e2 !important;
+    }
+    .v-application .accent.darken-2 {
+      background-color: #467dc6 !important;
+      border-color: #467dc6 !important;
+    }
+    .v-application .accent--text.text--darken-2 {
+      color: #467dc6 !important;
+      caret-color: #467dc6 !important;
+    }
+    .v-application .accent.darken-3 {
+      background-color: #2364aa !important;
+      border-color: #2364aa !important;
+    }
+    .v-application .accent--text.text--darken-3 {
+      color: #2364aa !important;
+      caret-color: #2364aa !important;
+    }
+    .v-application .accent.darken-4 {
+      background-color: #004c90 !important;
+      border-color: #004c90 !important;
+    }
+    .v-application .accent--text.text--darken-4 {
+      color: #004c90 !important;
+      caret-color: #004c90 !important;
+    }
+    .v-application .error {
+      background-color: #ff5252 !important;
+      border-color: #ff5252 !important;
+    }
+    .v-application .error--text {
+      color: #ff5252 !important;
+      caret-color: #ff5252 !important;
+    }
+    .v-application .error.lighten-5 {
+      background-color: #ffe4d5 !important;
+      border-color: #ffe4d5 !important;
+    }
+    .v-application .error--text.text--lighten-5 {
+      color: #ffe4d5 !important;
+      caret-color: #ffe4d5 !important;
+    }
+    .v-application .error.lighten-4 {
+      background-color: #ffc6b9 !important;
+      border-color: #ffc6b9 !important;
+    }
+    .v-application .error--text.text--lighten-4 {
+      color: #ffc6b9 !important;
+      caret-color: #ffc6b9 !important;
+    }
+    .v-application .error.lighten-3 {
+      background-color: #ffa99e !important;
+      border-color: #ffa99e !important;
+    }
+    .v-application .error--text.text--lighten-3 {
+      color: #ffa99e !important;
+      caret-color: #ffa99e !important;
+    }
+    .v-application .error.lighten-2 {
+      background-color: #ff8c84 !important;
+      border-color: #ff8c84 !important;
+    }
+    .v-application .error--text.text--lighten-2 {
+      color: #ff8c84 !important;
+      caret-color: #ff8c84 !important;
+    }
+    .v-application .error.lighten-1 {
+      background-color: #ff6f6a !important;
+      border-color: #ff6f6a !important;
+    }
+    .v-application .error--text.text--lighten-1 {
+      color: #ff6f6a !important;
+      caret-color: #ff6f6a !important;
+    }
+    .v-application .error.darken-1 {
+      background-color: #df323b !important;
+      border-color: #df323b !important;
+    }
+    .v-application .error--text.text--darken-1 {
+      color: #df323b !important;
+      caret-color: #df323b !important;
+    }
+    .v-application .error.darken-2 {
+      background-color: #bf0025 !important;
+      border-color: #bf0025 !important;
+    }
+    .v-application .error--text.text--darken-2 {
+      color: #bf0025 !important;
+      caret-color: #bf0025 !important;
+    }
+    .v-application .error.darken-3 {
+      background-color: #9f0010 !important;
+      border-color: #9f0010 !important;
+    }
+    .v-application .error--text.text--darken-3 {
+      color: #9f0010 !important;
+      caret-color: #9f0010 !important;
+    }
+    .v-application .error.darken-4 {
+      background-color: #800000 !important;
+      border-color: #800000 !important;
+    }
+    .v-application .error--text.text--darken-4 {
+      color: #800000 !important;
+      caret-color: #800000 !important;
+    }
+    .v-application .info {
+      background-color: #2196f3 !important;
+      border-color: #2196f3 !important;
+    }
+    .v-application .info--text {
+      color: #2196f3 !important;
+      caret-color: #2196f3 !important;
+    }
+    .v-application .info.lighten-5 {
+      background-color: #d4ffff !important;
+      border-color: #d4ffff !important;
+    }
+    .v-application .info--text.text--lighten-5 {
+      color: #d4ffff !important;
+      caret-color: #d4ffff !important;
+    }
+    .v-application .info.lighten-4 {
+      background-color: #b5ffff !important;
+      border-color: #b5ffff !important;
+    }
+    .v-application .info--text.text--lighten-4 {
+      color: #b5ffff !important;
+      caret-color: #b5ffff !important;
+    }
+    .v-application .info.lighten-3 {
+      background-color: #95e8ff !important;
+      border-color: #95e8ff !important;
+    }
+    .v-application .info--text.text--lighten-3 {
+      color: #95e8ff !important;
+      caret-color: #95e8ff !important;
+    }
+    .v-application .info.lighten-2 {
+      background-color: #75ccff !important;
+      border-color: #75ccff !important;
+    }
+    .v-application .info--text.text--lighten-2 {
+      color: #75ccff !important;
+      caret-color: #75ccff !important;
+    }
+    .v-application .info.lighten-1 {
+      background-color: #51b0ff !important;
+      border-color: #51b0ff !important;
+    }
+    .v-application .info--text.text--lighten-1 {
+      color: #51b0ff !important;
+      caret-color: #51b0ff !important;
+    }
+    .v-application .info.darken-1 {
+      background-color: #007cd6 !important;
+      border-color: #007cd6 !important;
+    }
+    .v-application .info--text.text--darken-1 {
+      color: #007cd6 !important;
+      caret-color: #007cd6 !important;
+    }
+    .v-application .info.darken-2 {
+      background-color: #0064ba !important;
+      border-color: #0064ba !important;
+    }
+    .v-application .info--text.text--darken-2 {
+      color: #0064ba !important;
+      caret-color: #0064ba !important;
+    }
+    .v-application .info.darken-3 {
+      background-color: #004d9f !important;
+      border-color: #004d9f !important;
+    }
+    .v-application .info--text.text--darken-3 {
+      color: #004d9f !important;
+      caret-color: #004d9f !important;
+    }
+    .v-application .info.darken-4 {
+      background-color: #003784 !important;
+      border-color: #003784 !important;
+    }
+    .v-application .info--text.text--darken-4 {
+      color: #003784 !important;
+      caret-color: #003784 !important;
+    }
+    .v-application .success {
+      background-color: #4caf50 !important;
+      border-color: #4caf50 !important;
+    }
+    .v-application .success--text {
+      color: #4caf50 !important;
+      caret-color: #4caf50 !important;
+    }
+    .v-application .success.lighten-5 {
+      background-color: #dcffd6 !important;
+      border-color: #dcffd6 !important;
+    }
+    .v-application .success--text.text--lighten-5 {
+      color: #dcffd6 !important;
+      caret-color: #dcffd6 !important;
+    }
+    .v-application .success.lighten-4 {
+      background-color: #beffba !important;
+      border-color: #beffba !important;
+    }
+    .v-application .success--text.text--lighten-4 {
+      color: #beffba !important;
+      caret-color: #beffba !important;
+    }
+    .v-application .success.lighten-3 {
+      background-color: #a2ff9e !important;
+      border-color: #a2ff9e !important;
+    }
+    .v-application .success--text.text--lighten-3 {
+      color: #a2ff9e !important;
+      caret-color: #a2ff9e !important;
+    }
+    .v-application .success.lighten-2 {
+      background-color: #85e783 !important;
+      border-color: #85e783 !important;
+    }
+    .v-application .success--text.text--lighten-2 {
+      color: #85e783 !important;
+      caret-color: #85e783 !important;
+    }
+    .v-application .success.lighten-1 {
+      background-color: #69cb69 !important;
+      border-color: #69cb69 !important;
+    }
+    .v-application .success--text.text--lighten-1 {
+      color: #69cb69 !important;
+      caret-color: #69cb69 !important;
+    }
+    .v-application .success.darken-1 {
+      background-color: #2d9437 !important;
+      border-color: #2d9437 !important;
+    }
+    .v-application .success--text.text--darken-1 {
+      color: #2d9437 !important;
+      caret-color: #2d9437 !important;
+    }
+    .v-application .success.darken-2 {
+      background-color: #00791e !important;
+      border-color: #00791e !important;
+    }
+    .v-application .success--text.text--darken-2 {
+      color: #00791e !important;
+      caret-color: #00791e !important;
+    }
+    .v-application .success.darken-3 {
+      background-color: #006000 !important;
+      border-color: #006000 !important;
+    }
+    .v-application .success--text.text--darken-3 {
+      color: #006000 !important;
+      caret-color: #006000 !important;
+    }
+    .v-application .success.darken-4 {
+      background-color: #004700 !important;
+      border-color: #004700 !important;
+    }
+    .v-application .success--text.text--darken-4 {
+      color: #004700 !important;
+      caret-color: #004700 !important;
+    }
+    .v-application .warning {
+      background-color: #fb8c00 !important;
+      border-color: #fb8c00 !important;
+    }
+    .v-application .warning--text {
+      color: #fb8c00 !important;
+      caret-color: #fb8c00 !important;
+    }
+    .v-application .warning.lighten-5 {
+      background-color: #ffff9e !important;
+      border-color: #ffff9e !important;
+    }
+    .v-application .warning--text.text--lighten-5 {
+      color: #ffff9e !important;
+      caret-color: #ffff9e !important;
+    }
+    .v-application .warning.lighten-4 {
+      background-color: #fffb82 !important;
+      border-color: #fffb82 !important;
+    }
+    .v-application .warning--text.text--lighten-4 {
+      color: #fffb82 !important;
+      caret-color: #fffb82 !important;
+    }
+    .v-application .warning.lighten-3 {
+      background-color: #ffdf67 !important;
+      border-color: #ffdf67 !important;
+    }
+    .v-application .warning--text.text--lighten-3 {
+      color: #ffdf67 !important;
+      caret-color: #ffdf67 !important;
+    }
+    .v-application .warning.lighten-2 {
+      background-color: #ffc24b !important;
+      border-color: #ffc24b !important;
+    }
+    .v-application .warning--text.text--lighten-2 {
+      color: #ffc24b !important;
+      caret-color: #ffc24b !important;
+    }
+    .v-application .warning.lighten-1 {
+      background-color: #ffa72d !important;
+      border-color: #ffa72d !important;
+    }
+    .v-application .warning--text.text--lighten-1 {
+      color: #ffa72d !important;
+      caret-color: #ffa72d !important;
+    }
+    .v-application .warning.darken-1 {
+      background-color: #db7200 !important;
+      border-color: #db7200 !important;
+    }
+    .v-application .warning--text.text--darken-1 {
+      color: #db7200 !important;
+      caret-color: #db7200 !important;
+    }
+    .v-application .warning.darken-2 {
+      background-color: #bb5900 !important;
+      border-color: #bb5900 !important;
+    }
+    .v-application .warning--text.text--darken-2 {
+      color: #bb5900 !important;
+      caret-color: #bb5900 !important;
+    }
+    .v-application .warning.darken-3 {
+      background-color: #9d4000 !important;
+      border-color: #9d4000 !important;
+    }
+    .v-application .warning--text.text--darken-3 {
+      color: #9d4000 !important;
+      caret-color: #9d4000 !important;
+    }
+    .v-application .warning.darken-4 {
+      background-color: #802700 !important;
+      border-color: #802700 !important;
+    }
+    .v-application .warning--text.text--darken-4 {
+      color: #802700 !important;
+      caret-color: #802700 !important;
+    }
+  </style>
+</head>
+<body>
+  <!-- Start header -->
+  <!--<header class="top-navbar">-->
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container">
+        <a class="navbar-brand" href="{% url 'index' %}">
+          <img src="{% static 'images/logo.png' %}" alt="" />
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars-rs-food" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbars-rs-food">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active"><a class="nav-link" href="{% url 'index' %}"><h3>首頁</h3></a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'produce' %}"><h3>創作區</h3></a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'forum' %}"><h3>論壇</h3></a></li>
+            <!--<li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">論壇</a>
+              <div class="dropdown-menu" aria-labelledby="dropdown-a">
+              {% if user.is_authenticated %}
+              <a class="dropdown-item" href="/userinfo/">帳號管理</a>
+              <a class="dropdown-item" href="/forum/">論壇</a>
+              <a class="dropdown-item" href="/logout/">登出</a>
+              <a class="dropdown-item" href="/message/all">個人通知</a>
+              {% else %}
+              <a class="dropdown-item" href="/regist/">註冊</a>
+              <a class="dropdown-item" href="/login/">登入</a>
+              <a class="dropdown-item" href="/forum/">論壇</a>
+              {% endif %}-->
+            <li class="nav-item"><a class="nav-link" href="{% url 'database' %}"><h3>音樂庫</h3></a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'intro' %}"><h3>關於我們</h3></a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <!-- End header -->
+  <div data-app="true" class="v-application v-application--is-ltr theme--light" id="app">
+    <div class="v-tooltip__content" style="left: 289px; opacity: 0; top: 514px; z-index: 8; display: none;">
+      <div>Play it back!</div>
+    </div>
+    <div data-v-552289c8="" class="v-tooltip__content" style="left: 1008px; opacity: 0; top: 309px; z-index: 8; display: none;">
+      <div data-v-552289c8="">Click to remix!</div>
+    </div>
+    <div class="v-application--wrap">
+      <div class="predict">
+        <div data-v-e7e3ca06="" class="header-controls" id="header-controls">
+          <div data-v-03f18144="" data-v-e7e3ca06="" class="header-container">
+            <button data-v-03f18144="" type="button" class="v-btn v-btn--depressed v-btn--flat v-btn--outlined theme--light v-size--small green--text text--lighten-1">
+              <span class="v-btn__content">歌曲列表</span>
+            </button>
+            <button data-v-03f18144="" type="button" class="v-btn v-btn--depressed v-btn--flat v-btn--outlined theme--light v-size--small green--text text--lighten-1">
+              <span class="v-btn__content">重新整理</span>
+            </button>
+            <div data-v-03f18144="" role="dialog" class="v-dialog__container" style="display: block;">
+              <div role="document" tabindex="0" data-v-03f18144="" class="v-dialog__content" style="z-index: 0;">
+                <div class="v-dialog" style="max-width: 1000px; display: none;">
+                </div>
+              </div>
+            </div>
+          </div>
+          <span data-v-e7e3ca06="" id="sequence-title" contenteditable="true" class="header-container">Locked Out Of Heaven - Bruno Mars - Chorus</span>
+          <div data-v-e7e3ca06="" class="header-container">
+            <button data-v-e7e3ca06="" type="button" class="v-btn v-btn--depressed v-btn--flat v-btn--outlined theme--light v-size--small green--text text--lighten-1">
+              <span class="v-btn__content">下載</span>
+            </button>
+            <button data-v-e7e3ca06="" type="button" class="v-btn v-btn--depressed v-btn--flat v-btn--outlined theme--light v-size--small green--text text--lighten-1">
+              <span class="v-btn__content">分享</span>
+            </button>
+          </div>
+        <div data-v-e7e3ca06="" class="playback-version">
+          <div data-v-e7e3ca06="" class="control-group-toggle v-item-group theme--light v-btn-toggle">
+            <button data-v-e7e3ca06="" type="button" value="prediction" class="v-btn v-item--active v-btn--active v-btn--flat v-btn--text theme--light v-size--default red--text">
+              <span class="v-btn__content"></span>
+            </button>
+            <button data-v-e7e3ca06="" type="button" value="original" class="v-btn v-btn--flat v-btn--text theme--light v-size--default green--text">
+              <span class="v-btn__content"></span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <!---->
+      <div data-v-962b792e="" id="sequencer" style="visibility: visible;"><div data-v-962b792e="" id="section">
+        <div data-v-077334b7="" data-v-962b792e="" class="keyboard">
+          <button data-v-49a1643a="" data-v-077334b7="" class="white-key" style="height: 24px; top: 0px; width: 70px;"></button>
+          <button data-v-49a1643a="" data-v-077334b7="" class="black-key" style="height: 14px; top: 14px; width: 50px;"></button>
+          <button data-v-49a1643a="" data-v-077334b7="" class="white-key" style="height: 24px; top: 28px; width: 70px;"></button>
+          <button data-v-49a1643a="" data-v-077334b7="" class="black-key" style="height: 14px; top: 42px; width: 50px;"></button>
+          <button data-v-49a1643a="" data-v-077334b7="" class="white-key" style="height: 24px; top: 56px; width: 70px;"></button>
+          <button data-v-49a1643a="" data-v-077334b7="" class="black-key" style="height: 14px; top: 70px; width: 50px;"></button>
+          <button data-v-49a1643a="" data-v-077334b7="" class="white-key" style="height: 24px; top: 84px; width: 70px;"></button>
+          <button data-v-49a1643a="" data-v-077334b7="" class="white-key" style="height: 24px; top: 98px; width: 70px;"></button>
+          <button data-v-49a1643a="" data-v-077334b7="" class="black-key" style="height: 14px; top: 112px; width: 50px;"></button>
+          <button data-v-49a1643a="" data-v-077334b7="" class="white-key" style="height: 24px; top: 126px; width: 70px;"></button>
+          <button data-v-49a1643a="" data-v-077334b7="" class="black-key" style="height: 14px; top: 140px; width: 50px;"></button>
+          <button data-v-49a1643a="" data-v-077334b7="" class="white-key" style="height: 24px; top: 154px; width: 70px;">C6</button>
+          <button data-v-49a1643a="" data-v-077334b7="" class="white-key" style="height: 24px; top: 168px; width: 70px;"></button>
+          <button data-v-49a1643a="" data-v-077334b7="" class="black-key" style="height: 14px; top: 182px; width: 50px;"></button>
+          <button data-v-49a1643a="" data-v-077334b7="" class="white-key" style="height: 24px; top: 196px; width: 70px;"></button>
+          <button data-v-49a1643a="" data-v-077334b7="" class="black-key" style="height: 14px; top: 210px; width: 50px;"></button>
+          <button data-v-49a1643a="" data-v-077334b7="" class="white-key" style="height: 24px; top: 224px; width: 70px;"></button>
+          <button data-v-49a1643a="" data-v-077334b7="" class="black-key" style="height: 14px; top: 238px; width: 50px;"></button>
+          <button data-v-49a1643a="" data-v-077334b7="" class="white-key" style="height: 24px; top: 252px; width: 70px;"></button>
+          <button data-v-49a1643a="" data-v-077334b7="" class="white-key" style="height: 24px; top: 266px; width: 70px;"></button>
+          <button data-v-49a1643a="" data-v-077334b7="" class="black-key" style="height: 14px; top: 280px; width: 50px;"></button>
+          <button data-v-49a1643a="" data-v-077334b7="" class="white-key" style="height: 24px; top: 294px; width: 70px;"></button>
+          <button data-v-49a1643a="" data-v-077334b7="" class="black-key" style="height: 14px; top: 308px; width: 50px;"></button>
+          <button data-v-49a1643a="" data-v-077334b7="" class="white-key" style="height: 24px; top: 322px; width: 70px;">C5</button>
+          <button data-v-49a1643a="" data-v-077334b7="" class="white-key" style="height: 24px; top: 336px; width: 70px;"></button>
+          <button data-v-49a1643a="" data-v-077334b7="" class="black-key" style="height: 14px; top: 350px; width: 50px;"></button>
+          <button data-v-49a1643a="" data-v-077334b7="" class="white-key" style="height: 24px; top: 364px; width: 70px;"></button>
+          <button data-v-49a1643a="" data-v-077334b7="" class="black-key" style="height: 14px; top: 378px; width: 50px;"></button>
+          <button data-v-49a1643a="" data-v-077334b7="" class="white-key" style="height: 24px; top: 392px; width: 70px;"></button>
+          <button data-v-49a1643a="" data-v-077334b7="" class="black-key" style="height: 14px; top: 406px; width: 50px;"></button>
+          <button data-v-49a1643a="" data-v-077334b7="" class="white-key" style="height: 24px; top: 420px; width: 70px;"></button>
+          <button data-v-49a1643a="" data-v-077334b7="" class="white-key" style="height: 24px; top: 434px; width: 70px;"></button>
+          <button data-v-49a1643a="" data-v-077334b7="" class="black-key" style="height: 14px; top: 448px; width: 50px;"></button>
+          <button data-v-49a1643a="" data-v-077334b7="" class="white-key" style="height: 24px; top: 462px; width: 70px;"></button>
+          <button data-v-49a1643a="" data-v-077334b7="" class="black-key" style="height: 14px; top: 476px; width: 50px;"></button>
+          <button data-v-49a1643a="" data-v-077334b7="" class="white-key" style="height: 24px; top: 490px; width: 70px;">C4</button>
+          <button data-v-49a1643a="" data-v-077334b7="" class="white-key" style="height: 24px; top: 504px; width: 70px;"></button>
+          <button data-v-49a1643a="" data-v-077334b7="" class="black-key" style="height: 14px; top: 518px; width: 50px;"></button>
+          <button data-v-49a1643a="" data-v-077334b7="" class="white-key" style="height: 24px; top: 532px; width: 70px;"></button>
+          <button data-v-49a1643a="" data-v-077334b7="" class="black-key" style="height: 14px; top: 546px; width: 50px;"></button>
+          <button data-v-49a1643a="" data-v-077334b7="" class="white-key" style="height: 24px; top: 560px; width: 70px;"></button>
+          <button data-v-49a1643a="" data-v-077334b7="" class="black-key" style="height: 14px; top: 574px; width: 50px;"></button>
+          <button data-v-49a1643a="" data-v-077334b7="" class="white-key" style="height: 24px; top: 588px; width: 70px;"></button>
+          <button data-v-49a1643a="" data-v-077334b7="" class="white-key" style="height: 24px; top: 602px; width: 70px;"></button>
+          <button data-v-49a1643a="" data-v-077334b7="" class="black-key" style="height: 14px; top: 616px; width: 50px;"></button>
+          <button data-v-49a1643a="" data-v-077334b7="" class="white-key" style="height: 24px; top: 630px; width: 70px;"></button>
+          <button data-v-49a1643a="" data-v-077334b7="" class="black-key" style="height: 14px; top: 644px; width: 50px;"></button>
+          <button data-v-49a1643a="" data-v-077334b7="" class="white-key" style="height: 24px; top: 658px; width: 70px;">C3</button>
+          <button data-v-49a1643a="" data-v-077334b7="" class="white-key" style="height: 24px; top: 672px; width: 70px;"></button>
+          <button data-v-49a1643a="" data-v-077334b7="" class="black-key" style="height: 14px; top: 686px; width: 50px;"></button>
+          <button data-v-49a1643a="" data-v-077334b7="" class="white-key" style="height: 24px; top: 700px; width: 70px;"></button>
+          <button data-v-49a1643a="" data-v-077334b7="" class="black-key" style="height: 14px; top: 714px; width: 50px;"></button>
+          <button data-v-49a1643a="" data-v-077334b7="" class="white-key" style="height: 24px; top: 728px; width: 70px;"></button>
+          <button data-v-49a1643a="" data-v-077334b7="" class="black-key" style="height: 14px; top: 742px; width: 50px;"></button>
+          <button data-v-49a1643a="" data-v-077334b7="" class="white-key" style="height: 24px; top: 756px; width: 70px;"></button>
+          <button data-v-49a1643a="" data-v-077334b7="" class="white-key" style="height: 24px; top: 770px; width: 70px;"></button>
+          <button data-v-49a1643a="" data-v-077334b7="" class="black-key" style="height: 14px; top: 784px; width: 50px;"></button>
+          <button data-v-49a1643a="" data-v-077334b7="" class="white-key" style="height: 24px; top: 798px; width: 70px;"></button>
+          <button data-v-49a1643a="" data-v-077334b7="" class="black-key" style="height: 14px; top: 812px; width: 50px;"></button>
+          <button data-v-49a1643a="" data-v-077334b7="" class="white-key" style="height: 24px; top: 826px; width: 70px;">C2</button>
+        </div>
+        <div data-v-120ecda2="" data-v-962b792e="" class="score">
+          <div data-v-120ecda2="" class="inner" style="width: 6000px;">
+          <div data-v-120ecda2="" class="grid" style="opacity: 1;">
+          <div data-v-6e266526="" data-v-120ecda2="" class="score-row white-score" style="height: 14px;">
+          </div>
+          <div data-v-6e266526="" data-v-120ecda2="" class="score-row black-score" style="height: 14px;">
+          </div>
+          <div data-v-6e266526="" data-v-120ecda2="" class="score-row white-score" style="height: 14px;">
+          </div>
+          <div data-v-6e266526="" data-v-120ecda2="" class="score-row black-score" style="height: 14px;"></div>
+          <div data-v-6e266526="" data-v-120ecda2="" class="score-row white-score" style="height: 14px;"></div>
+          <div data-v-6e266526="" data-v-120ecda2="" class="score-row black-score" style="height: 14px;"></div>
+          <div data-v-6e266526="" data-v-120ecda2="" class="score-row white-score" style="height: 14px;"></div>
+          <div data-v-6e266526="" data-v-120ecda2="" class="score-row white-score" style="height: 14px;"></div>
+          <div data-v-6e266526="" data-v-120ecda2="" class="score-row black-score" style="height: 14px;"></div>
+          <div data-v-6e266526="" data-v-120ecda2="" class="score-row white-score" style="height: 14px;"></div>
+          <div data-v-6e266526="" data-v-120ecda2="" class="score-row black-score" style="height: 14px;"></div>
+          <div data-v-6e266526="" data-v-120ecda2="" class="score-row white-score" style="height: 14px;"></div>
+          <div data-v-6e266526="" data-v-120ecda2="" class="score-row white-score" style="height: 14px;"></div>
+          <div data-v-6e266526="" data-v-120ecda2="" class="score-row black-score" style="height: 14px;"></div>
+          <div data-v-6e266526="" data-v-120ecda2="" class="score-row white-score" style="height: 14px;"></div>
+          <div data-v-6e266526="" data-v-120ecda2="" class="score-row black-score" style="height: 14px;"></div>
+          <div data-v-6e266526="" data-v-120ecda2="" class="score-row white-score" style="height: 14px;"></div>
+          <div data-v-6e266526="" data-v-120ecda2="" class="score-row black-score" style="height: 14px;"></div>
+          <div data-v-6e266526="" data-v-120ecda2="" class="score-row white-score" style="height: 14px;"></div>
+          <div data-v-6e266526="" data-v-120ecda2="" class="score-row white-score" style="height: 14px;"></div>
+          <div data-v-6e266526="" data-v-120ecda2="" class="score-row black-score" style="height: 14px;"></div>
+          <div data-v-6e266526="" data-v-120ecda2="" class="score-row white-score" style="height: 14px;"></div>
+          <div data-v-6e266526="" data-v-120ecda2="" class="score-row black-score" style="height: 14px;"></div>
+          <div data-v-6e266526="" data-v-120ecda2="" class="score-row white-score" style="height: 14px;"></div>
+          <div data-v-6e266526="" data-v-120ecda2="" class="score-row white-score" style="height: 14px;"></div>
+          <div data-v-6e266526="" data-v-120ecda2="" class="score-row black-score" style="height: 14px;"></div>
+          <div data-v-6e266526="" data-v-120ecda2="" class="score-row white-score" style="height: 14px;"></div>
+          <div data-v-6e266526="" data-v-120ecda2="" class="score-row black-score" style="height: 14px;"></div>
+          <div data-v-6e266526="" data-v-120ecda2="" class="score-row white-score" style="height: 14px;"></div>
+          <div data-v-6e266526="" data-v-120ecda2="" class="score-row black-score" style="height: 14px;"></div>
+          <div data-v-6e266526="" data-v-120ecda2="" class="score-row white-score" style="height: 14px;"></div>
+          <div data-v-6e266526="" data-v-120ecda2="" class="score-row white-score" style="height: 14px;"></div>
+          <div data-v-6e266526="" data-v-120ecda2="" class="score-row black-score" style="height: 14px;"></div>
+          <div data-v-6e266526="" data-v-120ecda2="" class="score-row white-score" style="height: 14px;"></div>
+          <div data-v-6e266526="" data-v-120ecda2="" class="score-row black-score" style="height: 14px;"></div>
+          <div data-v-6e266526="" data-v-120ecda2="" class="score-row white-score" style="height: 14px;"></div>
+          <div data-v-6e266526="" data-v-120ecda2="" class="score-row white-score" style="height: 14px;"></div>
+          <div data-v-6e266526="" data-v-120ecda2="" class="score-row black-score" style="height: 14px;"></div>
+          <div data-v-6e266526="" data-v-120ecda2="" class="score-row white-score" style="height: 14px;"></div>
+          <div data-v-6e266526="" data-v-120ecda2="" class="score-row black-score" style="height: 14px;"></div>
+          <div data-v-6e266526="" data-v-120ecda2="" class="score-row white-score" style="height: 14px;"></div>
+          <div data-v-6e266526="" data-v-120ecda2="" class="score-row black-score" style="height: 14px;"></div>
+          <div data-v-6e266526="" data-v-120ecda2="" class="score-row white-score" style="height: 14px;"></div>
+          <div data-v-6e266526="" data-v-120ecda2="" class="score-row white-score" style="height: 14px;"></div>
+          <div data-v-6e266526="" data-v-120ecda2="" class="score-row black-score" style="height: 14px;"></div>
+          <div data-v-6e266526="" data-v-120ecda2="" class="score-row white-score" style="height: 14px;"></div>
+          <div data-v-6e266526="" data-v-120ecda2="" class="score-row black-score" style="height: 14px;"></div>
+          <div data-v-6e266526="" data-v-120ecda2="" class="score-row white-score" style="height: 14px;"></div>
+          <div data-v-6e266526="" data-v-120ecda2="" class="score-row white-score" style="height: 14px;"></div>
+          <div data-v-6e266526="" data-v-120ecda2="" class="score-row black-score" style="height: 14px;"></div>
+          <div data-v-6e266526="" data-v-120ecda2="" class="score-row white-score" style="height: 14px;"></div>
+          <div data-v-6e266526="" data-v-120ecda2="" class="score-row black-score" style="height: 14px;"></div>
+          <div data-v-6e266526="" data-v-120ecda2="" class="score-row white-score" style="height: 14px;"></div>
+          <div data-v-6e266526="" data-v-120ecda2="" class="score-row black-score" style="height: 14px;"></div>
+          <div data-v-6e266526="" data-v-120ecda2="" class="score-row white-score" style="height: 14px;"></div>
+          <div data-v-6e266526="" data-v-120ecda2="" class="score-row white-score" style="height: 14px;"></div>
+          <div data-v-6e266526="" data-v-120ecda2="" class="score-row black-score" style="height: 14px;"></div>
+          <div data-v-6e266526="" data-v-120ecda2="" class="score-row white-score" style="height: 14px;"></div>
+          <div data-v-6e266526="" data-v-120ecda2="" class="score-row black-score" style="height: 14px;"></div>
+          <div data-v-6e266526="" data-v-120ecda2="" class="score-row white-score" style="height: 14px;"></div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 406px; left: 0px; width: 50px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-default"></div>
+            <div data-v-613c03c1="" class="selection begin note-default"></div>
+            <div data-v-613c03c1="" class="selection end note-default"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 392px; left: 50px; width: 25px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-default"></div>
+            <div data-v-613c03c1="" class="selection begin note-default"></div>
+            <div data-v-613c03c1="" class="selection end note-default"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 392px; left: 75px; width: 75px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-default"></div>
+            <div data-v-613c03c1="" class="selection begin note-default"></div>
+            <div data-v-613c03c1="" class="selection end note-default"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 294px; left: 250px; width: 50px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-default"></div>
+            <div data-v-613c03c1="" class="selection begin note-default"></div>
+            <div data-v-613c03c1="" class="selection end note-default"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 294px; left: 300px; width: 75px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-default"></div>
+            <div data-v-613c03c1="" class="selection begin note-default"></div>
+            <div data-v-613c03c1="" class="selection end note-default"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 294px; left: 425px; width: 50px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-default"></div>
+            <div data-v-613c03c1="" class="selection begin note-default"></div>
+            <div data-v-613c03c1="" class="selection end note-default"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 336px; left: 475px; width: 75px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-default"></div>
+            <div data-v-613c03c1="" class="selection begin note-default"></div>
+            <div data-v-613c03c1="" class="selection end note-default"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 294px; left: 550px; width: 50px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-default"></div>
+            <div data-v-613c03c1="" class="selection begin note-default"></div>
+            <div data-v-613c03c1="" class="selection end note-default"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 406px; left: 600px; width: 25px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-default"></div>
+            <div data-v-613c03c1="" class="selection begin note-default"></div>
+            <div data-v-613c03c1="" class="selection end note-default"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 294px; left: 625px; width: 50px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-default"></div>
+            <div data-v-613c03c1="" class="selection begin note-default"></div>
+            <div data-v-613c03c1="" class="selection end note-default"></div></div>
+            <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 392px; left: 675px; width: 25px; height: 14px; opacity: 0.8;"><div data-v-613c03c1="" class="note-color note-default"></div>
+            <div data-v-613c03c1="" class="selection begin note-default"></div>
+            <div data-v-613c03c1="" class="selection end note-default"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 392px; left: 700px; width: 75px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-default"></div>
+            <div data-v-613c03c1="" class="selection begin note-default"></div>
+            <div data-v-613c03c1="" class="selection end note-default"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 266px; left: 875px; width: 75px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-default"></div>
+            <div data-v-613c03c1="" class="selection begin note-default"></div>
+            <div data-v-613c03c1="" class="selection end note-default"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 294px; left: 1050px; width: 50px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 294px; left: 1100px; width: 75px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 336px; left: 1225px; width: 50px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 336px; left: 1275px; width: 75px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 336px; left: 1350px; width: 50px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 406px; left: 1400px; width: 25px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 336px; left: 1425px; width: 50px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 392px; left: 1475px; width: 25px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 364px; left: 1500px; width: 75px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 266px; left: 1675px; width: 75px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 294px; left: 1850px; width: 50px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 294px; left: 1900px; width: 75px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 336px; left: 2025px; width: 50px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 336px; left: 2075px; width: 75px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 336px; left: 2150px; width: 50px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 406px; left: 2200px; width: 25px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 336px; left: 2225px; width: 50px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 392px; left: 2275px; width: 25px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 364px; left: 2300px; width: 75px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 266px; left: 2575px; width: 75px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 294px; left: 2600px; width: 25px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 294px; left: 2625px; width: 75px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 336px; left: 2750px; width: 50px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 336px; left: 2800px; width: 50px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 336px; left: 2850px; width: 50px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div><div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 336px; left: 2900px; width: 50px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div><div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 364px; left: 2950px; width: 25px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div><div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 336px; left: 2975px; width: 50px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div><div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 392px; left: 3025px; width: 25px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 364px; left: 3050px; width: 75px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 266px; left: 3225px; width: 75px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 294px; left: 3400px; width: 25px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 294px; left: 3425px; width: 75px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 364px; left: 3550px; width: 50px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 336px; left: 3600px; width: 50px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 336px; left: 3650px; width: 50px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 336px; left: 3700px; width: 50px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 364px; left: 3750px; width: 25px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 336px; left: 3775px; width: 50px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 392px; left: 3825px; width: 25px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 364px; left: 3850px; width: 75px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 406px; left: 4050px; width: 25px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div><div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 406px; left: 4075px; width: 75px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 406px; left: 4150px; width: 50px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 434px; left: 4200px; width: 25px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 336px; left: 4225px; width: 75px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 266px; left: 4375px; width: 75px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 294px; left: 4425px; width: 75px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 392px; left: 4550px; width: 50px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 266px; left: 4625px; width: 25px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 392px; left: 4700px; width: 75px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 392px; left: 4750px; width: 50px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 266px; left: 4825px; width: 50px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 238px; left: 4875px; width: 25px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 238px; left: 4900px; width: 50px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 238px; left: 4950px; width: 50px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 266px; left: 5025px; width: 50px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 238px; left: 5075px; width: 25px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 238px; left: 5100px; width: 50px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 238px; left: 5150px; width: 50px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 266px; left: 5225px; width: 50px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 238px; left: 5275px; width: 25px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 238px; left: 5300px; width: 50px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 238px; left: 5350px; width: 50px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 266px; left: 5425px; width: 50px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 238px; left: 5475px; width: 25px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 238px; left: 5500px; width: 50px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 238px; left: 5550px; width: 50px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 238px; left: 0px; width: 400px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-default"></div>
+            <div data-v-613c03c1="" class="selection begin note-default"></div>
+            <div data-v-613c03c1="" class="selection end note-default"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 294px; left: 0px; width: 400px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-default"></div>
+            <div data-v-613c03c1="" class="selection begin note-default"></div>
+            <div data-v-613c03c1="" class="selection end note-default"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 336px; left: 0px; width: 400px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-default"></div>
+            <div data-v-613c03c1="" class="selection begin note-default"></div>
+            <div data-v-613c03c1="" class="selection end note-default"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 196px; left: 625px; width: 400px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-default"></div>
+            <div data-v-613c03c1="" class="selection begin note-default"></div>
+            <div data-v-613c03c1="" class="selection end note-default"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 238px; left: 625px; width: 400px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-default"></div>
+            <div data-v-613c03c1="" class="selection begin note-default"></div>
+            <div data-v-613c03c1="" class="selection end note-default"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 196px; left: 1425px; width: 400px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 238px; left: 1425px; width: 400px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 196px; left: 2225px; width: 400px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 238px; left: 2225px; width: 400px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 196px; left: 2975px; width: 400px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 238px; left: 2975px; width: 400px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 196px; left: 3775px; width: 400px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 238px; left: 3775px; width: 400px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 140px; left: 4000px; width: 200px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 196px; left: 4000px; width: 200px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 238px; left: 4000px; width: 200px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 126px; left: 4200px; width: 200px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 168px; left: 4200px; width: 200px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 224px; left: 4200px; width: 200px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 238px; left: 4400px; width: 25px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 294px; left: 4400px; width: 25px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 336px; left: 4400px; width: 25px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 406px; left: 4400px; width: 25px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 126px; left: 4525px; width: 25px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 168px; left: 4525px; width: 25px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 224px; left: 4525px; width: 25px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 168px; left: 4600px; width: 25px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 224px; left: 4600px; width: 25px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 266px; left: 4600px; width: 25px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 294px; left: 4600px; width: 25px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 238px; left: 4650px; width: 50px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 294px; left: 4650px; width: 50px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 336px; left: 4650px; width: 50px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 406px; left: 4650px; width: 50px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 126px; left: 4725px; width: 25px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 168px; left: 4725px; width: 25px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 238px; left: 4725px; width: 25px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 126px; left: 4800px; width: 200px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 168px; left: 4800px; width: 200px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 224px; left: 4800px; width: 200px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 126px; left: 5000px; width: 200px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 168px; left: 5000px; width: 200px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 224px; left: 5000px; width: 200px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 126px; left: 5200px; width: 200px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 168px; left: 5200px; width: 200px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 224px; left: 5200px; width: 200px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 126px; left: 5400px; width: 200px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 168px; left: 5400px; width: 200px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-613c03c1="" data-v-120ecda2="" class="note" style="bottom: 224px; left: 5400px; width: 200px; height: 14px; opacity: 0.8;">
+            <div data-v-613c03c1="" class="note-color note-predict"></div>
+            <div data-v-613c03c1="" class="selection begin note-predict"></div>
+            <div data-v-613c03c1="" class="selection end note-predict"></div>
+          </div>
+          <div data-v-1bceae9e="" data-v-120ecda2="" class="note-original" track="0" style="bottom: 408px; left: 0px; width: 50px; display: block; opacity: 0.3; filter: none;"></div>
+          <div data-v-1bceae9e="" data-v-120ecda2="" class="note-original" track="0" style="bottom: 394px; left: 50px; width: 25px; display: block; opacity: 0.3; filter: none;"></div>
+          <div data-v-1bceae9e="" data-v-120ecda2="" class="note-original" track="0" style="bottom: 394px; left: 75px; width: 75px; display: block; opacity: 0.3; filter: none;"></div>
+          <div data-v-1bceae9e="" data-v-120ecda2="" class="note-original" track="0" style="bottom: 296px; left: 250px; width: 25px; display: block; opacity: 0.3; filter: none;"></div>
+          <div data-v-1bceae9e="" data-v-120ecda2="" class="note-original" track="0" style="bottom: 296px; left: 275px; width: 25px; display: block; opacity: 0.3; filter: none;"></div>
+          <div data-v-1bceae9e="" data-v-120ecda2="" class="note-original" track="0" style="bottom: 296px; left: 300px; width: 25px; display: block; opacity: 0.3; filter: none;"></div>
+          <div data-v-1bceae9e="" data-v-120ecda2="" class="note-original" track="0" style="bottom: 338px; left: 325px; width: 25px; display: block; opacity: 0.3; filter: none;"></div>
+          <div data-v-1bceae9e="" data-v-120ecda2="" class="note-original" track="0" style="bottom: 296px; left: 350px; width: 25px; display: block; opacity: 0.3; filter: none;"></div>
+          <div data-v-1bceae9e="" data-v-120ecda2="" class="note-original" track="0" style="bottom: 408px; left: 375px; width: 75px; display: block; opacity: 0.3; filter: none;"></div>
+          <div data-v-1bceae9e="" data-v-120ecda2="" class="note-original" track="0" style="bottom: 394px; left: 450px; width: 25px; display: block; opacity: 0.3; filter: none;"></div>
+          <div data-v-1bceae9e="" data-v-120ecda2="" class="note-original" track="0" style="bottom: 394px; left: 475px; width: 75px; display: block; opacity: 0.3; filter: none;"></div>
+          <div data-v-1bceae9e="" data-v-120ecda2="" class="note-original" track="0" style="bottom: 338px; left: 725px; width: 50px; display: block; opacity: 0.3; filter: none;"></div>
+          <div data-v-1bceae9e="" data-v-120ecda2="" class="note-original" track="0" style="bottom: 366px; left: 775px; width: 25px; display: block; opacity: 0.3; filter: none;"></div>
+          <div data-v-1bceae9e="" data-v-120ecda2="" class="note-original" track="0" style="bottom: 394px; left: 800px; width: 25px; display: block; opacity: 0.3; filter: none;"></div>
+          <div data-v-1bceae9e="" data-v-120ecda2="" class="note-original" track="0" style="bottom: 408px; left: 825px; width: 25px; display: block; opacity: 0.3; filter: none;"></div>
+          <div data-v-1bceae9e="" data-v-120ecda2="" class="note-original" track="0" style="bottom: 394px; left: 850px; width: 25px; display: block; opacity: 0.3; filter: none;"></div>
+          <div data-v-1bceae9e="" data-v-120ecda2="" class="note-original" track="0" style="bottom: 408px; left: 875px; width: 25px; display: block; opacity: 0.3; filter: none;"></div>
+          <div data-v-1bceae9e="" data-v-120ecda2="" class="note-original" track="0" style="bottom: 394px; left: 900px; width: 50px; display: block; opacity: 0.3; filter: none;"></div>
+          <div data-v-1bceae9e="" data-v-120ecda2="" class="note-original" track="0" style="bottom: 338px; left: 1125px; width: 50px; display: block; opacity: 0.3; filter: none;"></div>
+          <div data-v-1bceae9e="" data-v-120ecda2="" class="note-original" track="0" style="bottom: 366px; left: 1175px; width: 25px; display: block; opacity: 0.3; filter: none;"></div>
+          <div data-v-1bceae9e="" data-v-120ecda2="" class="note-original" track="0" style="bottom: 394px; left: 1200px; width: 25px; display: block; opacity: 0.3; filter: none;"></div>
+          <div data-v-1bceae9e="" data-v-120ecda2="" class="note-original" track="0" style="bottom: 408px; left: 1225px; width: 25px; display: block; opacity: 0.3; filter: none;"></div>
+          <div data-v-1bceae9e="" data-v-120ecda2="" class="note-original" track="0" style="bottom: 394px; left: 1250px; width: 25px; display: block; opacity: 0.3; filter: none;"></div>
+          <div data-v-1bceae9e="" data-v-120ecda2="" class="note-original" track="0" style="bottom: 408px; left: 1275px; width: 25px; display: block; opacity: 0.3; filter: none;"></div>
+          <div data-v-1bceae9e="" data-v-120ecda2="" class="note-original" track="0" style="bottom: 394px; left: 1300px; width: 50px; display: block; opacity: 0.3; filter: none;"></div>
+          <div data-v-1bceae9e="" data-v-120ecda2="" class="note-original" track="0" style="bottom: 366px; left: 1350px; width: 25px; display: block; opacity: 0.3; filter: none;"></div>
+          <div data-v-1bceae9e="" data-v-120ecda2="" class="note-original" track="0" style="bottom: 366px; left: 1375px; width: 75px; display: block; opacity: 0.3; filter: none;"></div>
+          <div data-v-1bceae9e="" data-v-120ecda2="" class="note-original" track="0" style="bottom: 296px; left: 1475px; width: 25px; display: block; opacity: 0.3; filter: none;"></div>
+          <div data-v-1bceae9e="" data-v-120ecda2="" class="note-original" track="0" style="bottom: 296px; left: 1500px; width: 25px; display: block; opacity: 0.3; filter: none;"></div>
+          <div data-v-1bceae9e="" data-v-120ecda2="" class="note-original" track="0" style="bottom: 338px; left: 1525px; width: 50px; display: block; opacity: 0.3; filter: none;"></div>
+          <div data-v-1bceae9e="" data-v-120ecda2="" class="note-original" track="0" style="bottom: 296px; left: 1575px; width: 25px; display: block; opacity: 0.3; filter: none;"></div>
+          <div data-v-1bceae9e="" data-v-120ecda2="" class="note-original" track="0" style="bottom: 408px; left: 1600px; width: 50px; display: block; opacity: 0.3; filter: none;"></div>
+          <div data-v-1bceae9e="" data-v-120ecda2="" class="note-original" track="0" style="bottom: 394px; left: 1650px; width: 25px; display: block; opacity: 0.3; filter: none;"></div>
+          <div data-v-1bceae9e="" data-v-120ecda2="" class="note-original" track="0" style="bottom: 394px; left: 1675px; width: 75px; display: block; opacity: 0.3; filter: none;"></div>
+          <div data-v-1bceae9e="" data-v-120ecda2="" class="note-original" track="0" style="bottom: 296px; left: 1850px; width: 25px; display: block; opacity: 0.3; filter: none;"></div>
+          <div data-v-1bceae9e="" data-v-120ecda2="" class="note-original" track="0" style="bottom: 296px; left: 1875px; width: 25px; display: block; opacity: 0.3; filter: none;"></div>
+          <div data-v-1bceae9e="" data-v-120ecda2="" class="note-original" track="0" style="bottom: 296px; left: 1900px; width: 25px; display: block; opacity: 0.3; filter: none;"></div>
+          <div data-v-1bceae9e="" data-v-120ecda2="" class="note-original" track="0" style="bottom: 338px; left: 1925px; width: 25px; display: block; opacity: 0.3; filter: none;"></div>
+          <div data-v-1bceae9e="" data-v-120ecda2="" class="note-original" track="0" style="bottom: 296px; left: 1950px; width: 25px; display: block; opacity: 0.3; filter: none;"></div>
+          <div data-v-1bceae9e="" data-v-120ecda2="" class="note-original" track="0" style="bottom: 408px; left: 1975px; width: 75px; display: block; opacity: 0.3; filter: none;"></div>
+          <div data-v-1bceae9e="" data-v-120ecda2="" class="note-original" track="0" style="bottom: 394px; left: 2050px; width: 25px; display: block; opacity: 0.3; filter: none;"></div>
+          <div data-v-1bceae9e="" data-v-120ecda2="" class="note-original" track="0" style="bottom: 394px; left: 2075px; width: 75px; display: block; opacity: 0.3; filter: none;"></div>
+          <div data-v-1bceae9e="" data-v-120ecda2="" class="note-original" track="0" style="bottom: 338px; left: 2325px; width: 50px; display: block; opacity: 0.3; filter: none;"></div>
+          <div data-v-1bceae9e="" data-v-120ecda2="" class="note-original" track="0" style="bottom: 366px; left: 2375px; width: 25px; display: block; opacity: 0.3; filter: none;"></div>
+          <div data-v-1bceae9e="" data-v-120ecda2="" class="note-original" track="0" style="bottom: 394px; left: 2400px; width: 25px; display: block; opacity: 0.3; filter: none;"></div>
+          <div data-v-1bceae9e="" data-v-120ecda2="" class="note-original" track="0" style="bottom: 408px; left: 2425px; width: 25px; display: block; opacity: 0.3; filter: none;"></div>
+          <div data-v-1bceae9e="" data-v-120ecda2="" class="note-original" track="0" style="bottom: 394px; left: 2450px; width: 25px; display: block; opacity: 0.3; filter: none;"></div>
+          <div data-v-1bceae9e="" data-v-120ecda2="" class="note-original" track="0" style="bottom: 408px; left: 2475px; width: 25px; display: block; opacity: 0.3; filter: none;"></div>
+          <div data-v-1bceae9e="" data-v-120ecda2="" class="note-original" track="0" style="bottom: 394px; left: 2500px; width: 50px; display: block; opacity: 0.3; filter: none;"></div>
+          <div data-v-1bceae9e="" data-v-120ecda2="" class="note-original" track="0" style="bottom: 338px; left: 2725px; width: 50px; display: block; opacity: 0.3; filter: none;"></div>
+          <div data-v-1bceae9e="" data-v-120ecda2="" class="note-original" track="0" style="bottom: 366px; left: 2775px; width: 25px; display: block; opacity: 0.3; filter: none;"></div>
+          <div data-v-1bceae9e="" data-v-120ecda2="" class="note-original" track="0" style="bottom: 394px; left: 2800px; width: 25px; display: block; opacity: 0.3; filter: none;"></div>
+          <div data-v-1bceae9e="" data-v-120ecda2="" class="note-original" track="0" style="bottom: 408px; left: 2825px; width: 25px; display: block; opacity: 0.3; filter: none;"></div>
+          <div data-v-1bceae9e="" data-v-120ecda2="" class="note-original" track="0" style="bottom: 394px; left: 2850px; width: 25px; display: block; opacity: 0.3; filter: none;"></div>
+          <div data-v-1bceae9e="" data-v-120ecda2="" class="note-original" track="0" style="bottom: 408px; left: 2875px; width: 25px; display: block; opacity: 0.3; filter: none;"></div>
+          <div data-v-1bceae9e="" data-v-120ecda2="" class="note-original" track="0" style="bottom: 394px; left: 2900px; width: 50px; display: block; opacity: 0.3; filter: none;"></div>
+          <div data-v-1bceae9e="" data-v-120ecda2="" class="note-original" track="0" style="bottom: 366px; left: 2950px; width: 25px; display: block; opacity: 0.3; filter: none;"></div>
+          <div data-v-1bceae9e="" data-v-120ecda2="" class="note-original" track="0" style="bottom: 366px; left: 2975px; width: 75px; display: block; opacity: 0.3; filter: none;"></div>
+          <div data-v-1bceae9e="" data-v-120ecda2="" class="note-original" track="0" style="bottom: 324px; left: 3075px; width: 50px; display: block; opacity: 0.3; filter: none;"></div>
+          <div data-v-1bceae9e="" data-v-120ecda2="" class="note-original" track="0" style="bottom: 324px; left: 3125px; width: 50px; display: block; opacity: 0.3; filter: none;"></div>
+          <div data-v-1bceae9e="" data-v-120ecda2="" class="note-original" track="0" style="bottom: 338px; left: 3175px; width: 25px; display: block; opacity: 0.3; filter: none;"></div>
+          <div data-v-1bceae9e="" data-v-120ecda2="" class="note-original" track="1" style="bottom: 240px; left: 0px; width: 400px; display: block; opacity: 0.3; filter: none;"></div>
+          <div data-v-1bceae9e="" data-v-120ecda2="" class="note-original" track="1" style="bottom: 296px; left: 0px; width: 400px; display: block; opacity: 0.3; filter: none;"></div>
+          <div data-v-1bceae9e="" data-v-120ecda2="" class="note-original" track="1" style="bottom: 338px; left: 0px; width: 400px; display: block; opacity: 0.3; filter: none;"></div>
+          <div data-v-1bceae9e="" data-v-120ecda2="" class="note-original" track="1" style="bottom: 198px; left: 400px; width: 400px; display: block; opacity: 0.3; filter: none;"></div>
+          <div data-v-1bceae9e="" data-v-120ecda2="" class="note-original" track="1" style="bottom: 240px; left: 400px; width: 400px; display: block; opacity: 0.3; filter: none;"></div>
+          <div data-v-1bceae9e="" data-v-120ecda2="" class="note-original" track="1" style="bottom: 296px; left: 400px; width: 400px; display: block; opacity: 0.3; filter: none;"></div>
+          <div data-v-1bceae9e="" data-v-120ecda2="" class="note-original" track="1" style="bottom: 170px; left: 800px; width: 400px; display: block; opacity: 0.3; filter: none;"></div>
+          <div data-v-1bceae9e="" data-v-120ecda2="" class="note-original" track="1" style="bottom: 226px; left: 800px; width: 400px; display: block; opacity: 0.3; filter: none;"></div>
+          <div data-v-1bceae9e="" data-v-120ecda2="" class="note-original" track="1" style="bottom: 268px; left: 800px; width: 400px; display: block; opacity: 0.3; filter: none;"></div>
+          <div data-v-1bceae9e="" data-v-120ecda2="" class="note-original" track="1" style="bottom: 100px; left: 1200px; width: 400px; display: block; opacity: 0.3; filter: none;"></div>
+          <div data-v-1bceae9e="" data-v-120ecda2="" class="note-original" track="1" style="bottom: 156px; left: 1200px; width: 400px; display: block; opacity: 0.3; filter: none;"></div>
+          <div data-v-1bceae9e="" data-v-120ecda2="" class="note-original" track="1" style="bottom: 198px; left: 1200px; width: 400px; display: block; opacity: 0.3; filter: none;"></div>
+          <div data-v-1bceae9e="" data-v-120ecda2="" class="note-original" track="1" style="bottom: 240px; left: 1600px; width: 400px; display: block; opacity: 0.3; filter: none;"></div>
+          <div data-v-1bceae9e="" data-v-120ecda2="" class="note-original" track="1" style="bottom: 296px; left: 1600px; width: 400px; display: block; opacity: 0.3; filter: none;"></div>
+          <div data-v-1bceae9e="" data-v-120ecda2="" class="note-original" track="1" style="bottom: 338px; left: 1600px; width: 400px; display: block; opacity: 0.3; filter: none;"></div>
+          <div data-v-1bceae9e="" data-v-120ecda2="" class="note-original" track="1" style="bottom: 198px; left: 2000px; width: 400px; display: block; opacity: 0.3; filter: none;"></div>
+          <div data-v-1bceae9e="" data-v-120ecda2="" class="note-original" track="1" style="bottom: 240px; left: 2000px; width: 400px; display: block; opacity: 0.3; filter: none;"></div>
+          <div data-v-1bceae9e="" data-v-120ecda2="" class="note-original" track="1" style="bottom: 296px; left: 2000px; width: 400px; display: block; opacity: 0.3; filter: none;"></div>
+          <div data-v-1bceae9e="" data-v-120ecda2="" class="note-original" track="1" style="bottom: 170px; left: 2400px; width: 400px; display: block; opacity: 0.3; filter: none;"></div>
+          <div data-v-1bceae9e="" data-v-120ecda2="" class="note-original" track="1" style="bottom: 226px; left: 2400px; width: 400px; display: block; opacity: 0.3; filter: none;"></div>
+          <div data-v-1bceae9e="" data-v-120ecda2="" class="note-original" track="1" style="bottom: 268px; left: 2400px; width: 400px; display: block; opacity: 0.3; filter: none;"></div>
+          <div data-v-1bceae9e="" data-v-120ecda2="" class="note-original" track="1" style="bottom: 100px; left: 2800px; width: 375px; display: block; opacity: 0.3; filter: none;"></div>
+          <div data-v-1bceae9e="" data-v-120ecda2="" class="note-original" track="1" style="bottom: 156px; left: 2800px; width: 375px; display: block; opacity: 0.3; filter: none;"></div>
+          <div data-v-1bceae9e="" data-v-120ecda2="" class="note-original" track="1" style="bottom: 198px; left: 2800px; width: 375px; display: block; opacity: 0.3; filter: none;"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 0px; border-left-color: rgb(95, 95, 95);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 50px; border-left-color: rgb(187, 222, 251);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 100px; border-left-color: rgb(187, 222, 251);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 150px; border-left-color: rgb(187, 222, 251);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 200px; border-left-color: rgb(95, 95, 95);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 250px; border-left-color: rgb(187, 222, 251);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 300px; border-left-color: rgb(187, 222, 251);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 350px; border-left-color: rgb(187, 222, 251);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 400px; border-left-color: rgb(95, 95, 95);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 450px; border-left-color: rgb(187, 222, 251);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 500px; border-left-color: rgb(187, 222, 251);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 550px; border-left-color: rgb(187, 222, 251);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 600px; border-left-color: rgb(95, 95, 95);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 650px; border-left-color: rgb(187, 222, 251);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 700px; border-left-color: rgb(187, 222, 251);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 750px; border-left-color: rgb(187, 222, 251);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 800px; border-left-color: rgb(95, 95, 95);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 850px; border-left-color: rgb(187, 222, 251);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 900px; border-left-color: rgb(187, 222, 251);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 950px; border-left-color: rgb(187, 222, 251);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 1000px; border-left-color: rgb(95, 95, 95);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 1050px; border-left-color: rgb(187, 222, 251);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 1100px; border-left-color: rgb(187, 222, 251);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 1150px; border-left-color: rgb(187, 222, 251);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 1200px; border-left-color: rgb(95, 95, 95);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 1250px; border-left-color: rgb(187, 222, 251);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 1300px; border-left-color: rgb(187, 222, 251);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 1350px; border-left-color: rgb(187, 222, 251);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 1400px; border-left-color: rgb(95, 95, 95);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 1450px; border-left-color: rgb(187, 222, 251);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 1500px; border-left-color: rgb(187, 222, 251);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 1550px; border-left-color: rgb(187, 222, 251);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 1600px; border-left-color: rgb(95, 95, 95);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 1650px; border-left-color: rgb(187, 222, 251);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 1700px; border-left-color: rgb(187, 222, 251);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 1750px; border-left-color: rgb(187, 222, 251);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 1800px; border-left-color: rgb(95, 95, 95);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 1850px; border-left-color: rgb(187, 222, 251);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 1900px; border-left-color: rgb(187, 222, 251);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 1950px; border-left-color: rgb(187, 222, 251);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 2000px; border-left-color: rgb(95, 95, 95);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 2050px; border-left-color: rgb(187, 222, 251);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 2100px; border-left-color: rgb(187, 222, 251);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 2150px; border-left-color: rgb(187, 222, 251);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 2200px; border-left-color: rgb(95, 95, 95);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 2250px; border-left-color: rgb(187, 222, 251);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 2300px; border-left-color: rgb(187, 222, 251);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 2350px; border-left-color: rgb(187, 222, 251);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 2400px; border-left-color: rgb(95, 95, 95);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 2450px; border-left-color: rgb(187, 222, 251);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 2500px; border-left-color: rgb(187, 222, 251);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 2550px; border-left-color: rgb(187, 222, 251);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 2600px; border-left-color: rgb(95, 95, 95);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 2650px; border-left-color: rgb(187, 222, 251);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 2700px; border-left-color: rgb(187, 222, 251);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 2750px; border-left-color: rgb(187, 222, 251);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 2800px; border-left-color: rgb(95, 95, 95);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 2850px; border-left-color: rgb(187, 222, 251);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 2900px; border-left-color: rgb(187, 222, 251);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 2950px; border-left-color: rgb(187, 222, 251);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 3000px; border-left-color: rgb(95, 95, 95);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 3050px; border-left-color: rgb(187, 222, 251);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 3100px; border-left-color: rgb(187, 222, 251);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 3150px; border-left-color: rgb(187, 222, 251);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 3200px; border-left-color: rgb(95, 95, 95);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 3250px; border-left-color: rgb(187, 222, 251);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 3300px; border-left-color: rgb(187, 222, 251);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 3350px; border-left-color: rgb(187, 222, 251);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 3400px; border-left-color: rgb(95, 95, 95);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 3450px; border-left-color: rgb(187, 222, 251);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 3500px; border-left-color: rgb(187, 222, 251);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 3550px; border-left-color: rgb(187, 222, 251);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 3600px; border-left-color: rgb(95, 95, 95);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 3650px; border-left-color: rgb(187, 222, 251);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 3700px; border-left-color: rgb(187, 222, 251);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 3750px; border-left-color: rgb(187, 222, 251);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 3800px; border-left-color: rgb(95, 95, 95);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 3850px; border-left-color: rgb(187, 222, 251);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 3900px; border-left-color: rgb(187, 222, 251);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 3950px; border-left-color: rgb(187, 222, 251);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 4000px; border-left-color: rgb(95, 95, 95);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 4050px; border-left-color: rgb(187, 222, 251);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 4100px; border-left-color: rgb(187, 222, 251);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 4150px; border-left-color: rgb(187, 222, 251);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 4200px; border-left-color: rgb(95, 95, 95);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 4250px; border-left-color: rgb(187, 222, 251);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 4300px; border-left-color: rgb(187, 222, 251);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 4350px; border-left-color: rgb(187, 222, 251);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 4400px; border-left-color: rgb(95, 95, 95);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 4450px; border-left-color: rgb(187, 222, 251);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 4500px; border-left-color: rgb(187, 222, 251);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 4550px; border-left-color: rgb(187, 222, 251);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 4600px; border-left-color: rgb(95, 95, 95);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 4650px; border-left-color: rgb(187, 222, 251);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 4700px; border-left-color: rgb(187, 222, 251);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 4750px; border-left-color: rgb(187, 222, 251);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 4800px; border-left-color: rgb(95, 95, 95);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 4850px; border-left-color: rgb(187, 222, 251);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 4900px; border-left-color: rgb(187, 222, 251);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 4950px; border-left-color: rgb(187, 222, 251);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 5000px; border-left-color: rgb(95, 95, 95);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 5050px; border-left-color: rgb(187, 222, 251);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 5100px; border-left-color: rgb(187, 222, 251);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 5150px; border-left-color: rgb(187, 222, 251);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 5200px; border-left-color: rgb(95, 95, 95);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 5250px; border-left-color: rgb(187, 222, 251);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 5300px; border-left-color: rgb(187, 222, 251);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 5350px; border-left-color: rgb(187, 222, 251);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 5400px; border-left-color: rgb(95, 95, 95);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 5450px; border-left-color: rgb(187, 222, 251);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 5500px; border-left-color: rgb(187, 222, 251);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 5550px; border-left-color: rgb(187, 222, 251);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 5600px; border-left-color: rgb(95, 95, 95);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 5650px; border-left-color: rgb(187, 222, 251);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 5700px; border-left-color: rgb(187, 222, 251);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 5750px; border-left-color: rgb(187, 222, 251);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 5800px; border-left-color: rgb(95, 95, 95);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 5850px; border-left-color: rgb(187, 222, 251);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 5900px; border-left-color: rgb(187, 222, 251);"></div>
+          <div data-v-14377cef="" data-v-120ecda2="" style="left: 5950px; border-left-color: rgb(187, 222, 251);"></div>
+        </div>
+        <div data-v-120ecda2="" class="grid-controls">
+          <div data-v-6bff2918="" data-v-120ecda2="" id="progress-line" class="draggable-line" style="left: 50px; visibility: visible;"></div>
+          <div data-v-25ff7860="" data-v-120ecda2="" id="seed-line" class="draggable-line" style="left: 996px; visibility: visible;"></div>
+          <div data-v-30acfff8="" data-v-120ecda2="" id="mask-start-line" class="draggable-line" style="left: 96px; visibility: hidden;"></div>
+          <div data-v-39d7288a="" data-v-120ecda2="" id="mask-end-line" class="draggable-line" style="left: 3046px; visibility: hidden;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <span data-v-962b792e="" class="v-tooltip v-tooltip--right"></span>
+  <button type="button" class="v-btn v-btn--contained v-btn--fab v-btn--round theme--dark v-size--large blue darken-2" id="play-button">
+    <span class="v-btn__content">
+      <i aria-hidden="true" class="v-icon notranslate material-icons theme--dark">play_arrow</i>
+    </span>
+  </button>
+  <span data-v-552289c8="" class="v-tooltip v-tooltip--left" data-v-962b792e=""></span>
+  <div data-v-6391dd3d="" class="loading-outer" id="loading-predict" data-v-962b792e="" style="display: none;">
+    <div data-v-6391dd3d="" class="loading-inner">
+      <div data-v-6391dd3d="" role="progressbar" aria-valuemin="0" aria-valuemax="100" class="v-progress-circular v-progress-circular--indeterminate green--text text--accent-3" style="height: 40px; width: 40px;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="22.22222222222222 22.22222222222222 44.44444444444444 44.44444444444444" style="transform: rotate(0deg);">
+          <circle fill="transparent" cx="44.44444444444444" cy="44.44444444444444" r="20" stroke-width="4.444444444444445" stroke-dasharray="125.664" stroke-dashoffset="125.66370614359172px" class="v-progress-circular__overlay"></circle>
+        </svg>
+        <div class="v-progress-circular__info"></div>
+      </div>
+      <label data-v-6391dd3d=""></label>
+      <div data-v-6391dd3d="" role="progressbar" aria-valuemin="0" aria-valuemax="100" class="v-progress-circular v-progress-circular--indeterminate green--text text--accent-3" style="height: 40px; width: 40px;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="22.22222222222222 22.22222222222222 44.44444444444444 44.44444444444444" style="transform: rotate(0deg);">
+          <circle fill="transparent" cx="44.44444444444444" cy="44.44444444444444" r="20" stroke-width="4.444444444444445" stroke-dasharray="125.664" stroke-dashoffset="125.66370614359172px" class="v-progress-circular__overlay"></circle>
+        </svg>
+        <div class="v-progress-circular__info"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="footer-controls">
+  <div data-v-68e0a0f3="" class="control-group" id="sequence-controls">
+    <div data-v-68e0a0f3="" class="control-group-header">播放控制</div>
+    <div data-v-68e0a0f3="" class="control-group-content">
+      <div data-v-68e0a0f3="" class="control-group-control">
+        <div data-v-68e0a0f3="" class="control-group-label">速度: 147</div>
+        <div data-v-68e0a0f3="" class="v-input control-group-slider v-input--hide-details v-input--is-label-active v-input--is-dirty theme--light v-input__slider">
+          <div class="v-input__control">
+            <div class="v-input__slot">
+              <div class="v-slider v-slider--horizontal theme--light">
+                <input value="147" id="bpm" readonly="readonly" tabindex="-1">
+                <div class="v-slider__track-container">
+                  <div class="v-slider__track-background primary lighten-3" style="right: 0px; width: calc(3.33333%);"></div>
+                  <div class="v-slider__track-fill blue" style="left: 0px; right: auto; width: 96.6667%;"></div>
+                </div>
+                <div role="slider" tabindex="0" aria-valuemin="60" aria-valuemax="150" aria-valuenow="147" aria-readonly="false" aria-orientation="horizontal" class="v-slider__thumb-container blue--text" style="left: 96.6667%;">
+                  <div class="v-slider__thumb blue"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-v-68e0a0f3="" class="control-group-control">
+        <div data-v-68e0a0f3="" class="control-group-label">樂器</div>
+        <div data-v-68e0a0f3="" class="control-group-toggle v-item-group theme--light v-btn-toggle">
+          <button data-v-68e0a0f3="" type="button" value="piano" class="v-btn v-item--active v-btn--active v-btn--flat v-btn--text theme--light v-size--default">
+            <span class="v-btn__content">鋼琴</span>
+          </button>
+          <button data-v-68e0a0f3="" type="button" value="synth" class="v-btn v-btn--flat v-btn--text theme--light v-size--default">
+            <span class="v-btn__content">合成器</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div data-v-3d15187a="" class="control-group" id="predict-controls">
+    <div data-v-3d15187a="" class="control-group-header">Creativity</div>
+    <div data-v-3d15187a="" class="control-group-content">
+      <div data-v-3d15187a="" class="control-group-control">
+        <div data-v-3d15187a="" class="control-group-label">Pitch: 60%</div>
+        <div data-v-3d15187a="" class="v-input control-group-slider v-input--hide-details v-input--is-label-active v-input--is-dirty theme--light v-input__slider">
+          <div class="v-input__control">
+            <div class="v-input__slot">
+              <div class="v-slider v-slider--horizontal theme--light">
+                <input value="1.3" id="noteTemp" readonly="readonly" tabindex="-1" type="range">
+                <div class="v-slider__track-container">
+                  <div class="v-slider__track-background primary lighten-3" style="right: 0px; width: calc(40%);"></div>
+                  <div class="v-slider__track-fill red" style="left: 0px; right: auto; width: 60%;"></div>
+                </div>
+                <div role="slider" tabindex="0" aria-valuemin="0.1" aria-valuemax="2.1" aria-valuenow="1.3" aria-readonly="false" aria-orientation="horizontal" type="range" class="v-slider__thumb-container red--text" style="left: 60%;">
+                  <div class="v-slider__thumb red"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-v-3d15187a="" class="control-group-control">
+        <div data-v-3d15187a="" class="control-group-label">Rhythm: 35%</div>
+        <div data-v-3d15187a="" class="v-input control-group-slider v-input--hide-details v-input--is-label-active v-input--is-dirty theme--light v-input__slider">
+          <div class="v-input__control">
+            <div class="v-input__slot">
+              <div class="v-slider v-slider--horizontal theme--light">
+                <input value="0.8" id="durTemp" readonly="readonly" tabindex="-1" type="range">
+                <div class="v-slider__track-container">
+                  <div class="v-slider__track-background primary lighten-3" style="right: 0px; width: calc(65%);"></div>
+                  <div class="v-slider__track-fill red" style="left: 0px; right: auto; width: 35%;"></div>
+                </div>
+                <div role="slider" tabindex="0" aria-valuemin="0.1" aria-valuemax="2.1" aria-valuenow="0.8" aria-readonly="false" aria-orientation="horizontal" type="range" class="v-slider__thumb-container red--text" style="left: 35%;">
+                  <div class="v-slider__thumb red"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<div id="nav">
+  <a href="#/" class="active router-link-active">Playground</a> |
+    <a href="#/about" class="">About</a>
+  </div>
+</div>
+</div>
+<script src="{% static 'js/act_tim.js' %}"></script>
+<script src="{% static 'js/produce_tim.js' %}"></script>
+</body>
+</html>

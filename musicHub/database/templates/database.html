@@ -1,0 +1,161 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="utf-8"><!-- Basic -->
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">   
+   
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+     <!-- Site Metas -->
+    <title>MusicHub</title>  
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Site Icons -->
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+    <link rel="apple-touch-icon" href="{% static 'images/apple-touch-icon.png' %}">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min_leo.css' %}">    
+	<!-- Site CSS -->
+    <link rel="stylesheet" href="{% static 'css/style_leo.css' %}">    
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="{% static 'css/responsive_leo.css' %}">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/custom_leo.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/database_leo.css' %}">
+
+</head>
+
+<body  onload="javascript:init();">
+	<!-- Start header -->
+	<header class="top-navbar">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<div class="container">
+				<a class="navbar-brand" href="{% url 'index' %}">
+					<img src="{% static 'images/logo.png' %}" alt="" />
+				</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars-rs-food" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
+				  <span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbars-rs-food">
+					<ul class="navbar-nav ml-auto">
+						<li class="nav-item active"><a class="nav-link" href="{% url 'index' %}">首頁</a></li>
+						<li class="nav-item"><a class="nav-link" href="{% url 'produce' %}">創作區</a></li>
+						<li class="nav-item dropdown">
+              				<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">論壇</a>
+              				<div class="dropdown-menu" aria-labelledby="dropdown-a">
+                			{% if user.is_authenticated %}
+                			<a class="dropdown-item" href="/userinfo/">帳號管理</a>
+                			<a class="dropdown-item" href="/forum/">論壇</a>
+                			<a class="dropdown-item" href="/logout/">登出</a>
+                			<a class="dropdown-item" href="/message/all">個人通知</a>
+                			{% else %}
+                			<a class="dropdown-item" href="/regist/">註冊</a>
+                			<a class="dropdown-item" href="/login/">登入</a>
+                			<a class="dropdown-item" href="/forum/">論壇</a>
+                			{% endif %}
+						<li class="nav-item"><a class="nav-link" href="{% url 'database' %}">音樂庫</a></li>
+						<li class="nav-item"><a class="nav-link" href="{% url 'intro' %}">關於我們</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</header>
+	<!-- End header -->
+	
+	<!-- Start All Pages -->
+	<div style="padding: 0px 0 100px">
+		
+	</div>
+	<!-- End All Pages -->
+	
+	<!-- Start database -->
+
+	
+	
+		<div class="btnContainer">			
+			<b style="font-size: 50px; color:black; margin-left: 15%">音樂庫</b>
+			<br>
+			<button class="btn active" onclick="filterSelection('all')">全部</button>
+			<button class="btn" onclick="filterSelection('music')">音樂</button>	
+			<button class="btn" onclick="filterSelection('others')">其他</button>	
+    	</div>
+
+    	<form action="/search3/" method="post">
+            {% csrf_token %}
+            <div class="blog-search-form">
+              <input name="searchdata" id="searchdata" placeholder="從全部文章中搜尋......" type="text">
+              <button class="search-btn">
+                <i class="fa fa-search" aria-hidden="true"></i>
+              </button>
+    	<div class="container" style="overflow: hidden">   		
+
+            {% for music in MusicFile %}
+            <div class="filterDiv music">
+            	{% if 1 == 1 %}
+            	<br>
+            	<h4>{{ music.file.name }}</h4>     	
+            	<a href="{{ music.file.url }}" download>下載midi</a>
+            	{% endif %}
+            </div>
+			{% endfor %}
+			
+            {% for music in searchresult %}
+            <div class="filterDiv music">
+            	{% if 1 == 1 %}
+            	<br>
+            	<h4>{{ music.file.name }}</h4>     	
+            	<a href="{{ music.file.url }}" download>下載midi</a>
+            	{% endif %}
+            </div>
+
+            {% endfor %}
+
+            <div class="filterDiv others">其他</div>
+    	</div>
+    	
+
+    
+	<!-- End database -->
+	
+	<!-- Start Contact info -->
+	<div class="contact-imfo-box">
+		<div class="container"></div>
+	</div>
+	<!-- End Contact info -->
+	
+	<!-- Start Footer -->
+	<footer class="footer-area bg-f">
+		<div class="container">
+			<div class="row">
+				<div><p><br></p></div>
+			</div>
+		</div>
+		
+	</footer>
+	<!-- End Footer -->
+	
+	<a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
+
+	<!-- ALL JS FILES -->
+	<script src="{% static 'js/jquery-3.2.1.min_leo.js' %}"></script>
+	<script src="{% static 'js/popper.min_leo.js' %}"></script>
+	<script src="{% static 'js/bootstrap.min_leo.js' %}"></script>
+    <!-- ALL PLUGINS -->
+	<script src="{% static 'js/jquery.superslides.min_leo.js' %}"></script>
+	<script src="{% static 'js/images-loded.min_leo.js' %}"></script>
+	<script src="{% static 'js/isotope.min_leo.js' %}"></script>
+	<script src="{% static 'js/baguetteBox.min_leo.js' %}"></script>
+	<script src="{% static 'js/form-validator.min_leo.js' %}"></script>
+    <script src="{% static 'js/contact-form-script_leo.js' %}"></script>
+    <!--<script src="{% static 'js/custom.js' %}"></script>-->
+    <script src="{% static 'js/filter_leo.js' %}"></script>
+    <script src="{% static 'js/database_leo.js' %}"></script>
+    
+</body>
+</html>

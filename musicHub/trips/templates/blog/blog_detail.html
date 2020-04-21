@@ -1,0 +1,296 @@
+ 
+<!DOCTYPE html>
+<html lang="en">
+<!-- Basic -->
+{% load static %}
+<head>
+  <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">   
+   
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+     <!-- Site Metas -->
+    <title>MusicHub</title>  
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Site Icons -->
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+    <link rel="apple-touch-icon" href="{% static 'images/apple-touch-icon.png' %}">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">    
+  <!-- Site CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">    
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+  <!-- Start header -->
+  <header class="top-navbar">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container">
+        <a class="navbar-brand" href="{% url 'index' %}">
+          <img src="{% static 'images/logo.png' %}" alt="" />
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars-rs-food" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbars-rs-food">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active"><a class="nav-link" href="{% url 'index' %}">首頁</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'produce' %}">創作區</a></li>
+            <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">論壇</a>
+                      <div class="dropdown-menu" aria-labelledby="dropdown-a">
+                      {% if user.is_authenticated %}
+                      <a class="dropdown-item" href="/userinfo/">帳號管理</a>
+                      <a class="dropdown-item" href="/forum/">論壇</a>
+                      <a class="dropdown-item" href="/logout/">登出</a>
+                      <a class="dropdown-item" href="/message/all">個人通知</a>
+                      {% else %}
+                      <a class="dropdown-item" href="/regist/">註冊</a>
+                      <a class="dropdown-item" href="/login/">登入</a>
+                      <a class="dropdown-item" href="/forum/">論壇</a>
+                      {% endif %}
+            <li class="nav-item"><a class="nav-link" href="{% url 'database' %}">音樂庫</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'intro' %}">關於我們</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+	
+	<!-- Start All Pages -->
+	
+	<!-- End All Pages -->
+	<br/><br/><br/><br/><br/>
+	<!-- Start blog details -->
+	<div class="blog-box">
+		{% if post.created_at %}
+
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="heading-title text-center">
+						<span style="font-size:1.8cm; color:black;font-family:monospace">{{ post.title }}</span><br>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xl-8 col-lg-8 col-12">
+					<div class="blog-inner-details-page">
+						<div class="blog-inner-box">
+							<div class="side-blog-img">
+								{% if post.post_pic %}
+								<img class="img-fluid" src="{{post.post_pic.url}}" alt="">	
+								{% else %}
+								<img class="img-fluid" src="{% static 'images/blog_detail_default.jpg' %}"alt="">	{% endif %}		
+								<div class="date-blog-up">
+
+									{{ post.created_at }}
+									
+								</div>
+							</div>
+							<div class="inner-blog-detail details-page">
+								{% if post.subtitle %}
+								<h3>{{ post.subtitle }}</h3>
+								{% endif %}	
+								<ul>
+									<li><i class="zmdi zmdi-account"></i>Posted By : <span>{{ post.author }}</span></li>
+									<li>|</li>
+									<li><i class="zmdi zmdi-time"></i>Time : <span>{{ post.created_at }}</span></li>
+								</ul>
+								<div class="des-l" style="word-break: break-all;">
+										{{ post.content|linebreaks }}
+									</div>
+								
+								
+								</div>
+								
+							{% endif %}
+							{% if post.document %}
+						<p>相關文件: <a href="{{ post.document.url }}">{{ post.document.url }}</a></p>
+						{% else %}
+						<p>作者很任性，沒有附任何文件在裡面~</p>
+						{% endif %}
+
+						
+								<a href="{% url 'del_post' post.id %}"class='myButton' onclick="return confirm('確認是否刪除文章?')"><font size='5'>刪除文章</font></a>
+								<a href="{% url 'post_edit' pk=post.pk %}" class='myButton'><font size='5'>編輯文章</font></a>
+
+							</div>
+						<div class="blog-comment-box">
+							<h3>Comments</h3>
+							{% for comment in post.comments.all %}
+							{% csrf_token %}
+							<div class="comment-item">
+								<div class="comment-item-left">
+									<img src="{{request.user.profile.avatar.url}}" alt="">
+								</div>
+								<div class="comment-item-right">
+									<div class="pull-left">
+										<a href="#">{{ comment.author }}</a>
+									</div>
+									<div class="pull-right">
+										<i class="fa fa-clock-o" aria-hidden="true"></i>Time : <span>{{ comment.created_date }}</span>
+									</div>
+									<div class="des-l" style="word-break: break-all">
+										{{ comment.text|linebreaks }}
+									</div>
+								</div>
+
+	
+							</div>{% endfor %}
+						</div>
+						<div class="comment-respond-box">
+							<h3>{{ user.username }}請留下你的留言: </h3>
+							<div class="comment-respond-form">
+								<form method="POST" enctype="multipart/form-data" action="" class="post-form">
+								{% csrf_token %}
+							<div class="comment-respond-form">
+								<form id="commentrespondform" class="comment-form-respond row" method="post">
+									<div class="col-lg-6 col-md-6 col-sm-6">
+										<div class="form-group">
+										</div>
+									</div>
+										<div class="col-lg-6 col-md-6 col-sm-6">
+										<div class="form-group">
+											<textarea id="id_text" class="form-control" name='text'  placeholder="你的留言" rows="2" required></textarea>
+						
+										</div>
+									</div>
+									{% if user.is_authenticated %}
+									<div class="col-lg-12 col-md-12 col-sm-12">
+										<button type="submit" class="save btn btn-default">Send</button>
+									</div>
+									{% else %}
+									<h3>想要留言的話請先登入! </h3>
+									{% endif %}
+								</form>
+
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-xl-4 col-lg-4 col-md-6 col-sm-8 col-12 blog-sidebar">
+					<div class="right-side-blog">
+						<h3>Search</h3>
+						<div class="blog-search-form">
+							<form action="/search2/" method="post">
+								{% csrf_token %}
+							<input name="search" id="search" placeholder="從全部文章中搜尋......" type="text">
+							<button class="search-btn">
+								<i class="fa fa-search" aria-hidden="true"></i>
+							</button>
+						</div>
+						<h3>Categories</h3>
+						<div class="blog-categories">
+							<ul>
+								<li><a href="/blog/blog_symphony/"><span>交響樂</span></a></li>
+								<li><a href="/blog/blog_sonata/"><span>奏鳴曲</span></a></li>
+								<li><a href="/blog/blog_chorus/"><span>合唱</span></a></li>
+								<li><a href="/blog/blog_opera/"><span>歌劇</span></a></li>
+								<li><a href="/blog/blog_concerto/"><span>協奏曲</span></a></li>
+								<li><a href="/blog/blog_modern/"><span>流行樂</span></a></li>
+							</ul>
+						</div>
+						
+						
+					</div>
+				</div>
+			
+			</div>
+		</div>
+		
+
+	<!-- End details -->
+	
+	<!-- Start Contact info -->
+	<!-- Start Contact info -->
+  
+        <!--<div class="col-lg-3 col-md-6">
+          <h3>About Us</h3>
+          <p>Integer cursus scelerisque ipsum id efficitur. Donec a dui fringilla, gravida lorem ac, semper magna. Aenean rhoncus ac lectus a interdum. Vivamus semper posuere dui, at ornare turpis ultrices sit amet. Nulla cursus lorem ut nisi porta, ac eleifend arcu ultrices.</p>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <h3>Opening hours</h3>
+          <p><span class="text-color">Monday: </span>Closed</p>
+          <p><span class="text-color">Tue-Wed :</span> 9:Am - 10PM</p>
+          <p><span class="text-color">Thu-Fri :</span> 9:Am - 10PM</p>
+          <p><span class="text-color">Sat-Sun :</span> 5:PM - 10PM</p>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <h3>Contact information</h3>
+          <p class="lead">Ipsum Street, Lorem Tower, MO, Columbia, 508000</p>
+          <p class="lead"><a href="#">+01 2000 800 9999</a></p>
+          <p><a href="#"> info@admin.com</a></p>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <h3>Subscribe</h3>
+          <div class="subscribe_form">
+            <form class="subscribe_form">
+              <input name="EMAIL" id="subs-email" class="form_input" placeholder="Email Address..." type="email">
+              <button type="submit" class="submit">SUBSCRIBE</button>
+              <div class="clearfix"></div>
+            </form>
+          </div>
+          <ul class="list-inline f-social">
+            <li class="list-inline-item"><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+            <li class="list-inline-item"><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+            <li class="list-inline-item"><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+            <li class="list-inline-item"><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+            <li class="list-inline-item"><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+          </ul>
+        </div>-->
+      </div>
+    </div>
+    
+  </footer>
+  <!-- End Footer -->
+  
+  <a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
+
+  <!-- ALL JS FILES -->
+  <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+  <script src="{% static 'js/popper.min.js' %}"></script>
+  <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <!-- ALL PLUGINS -->
+  
+  <script src="{% static 's/jquery.superslides.min.js' %}"></script>
+  <script src="{% static 'js/images-loded.min.js' %}"></script>
+  <script src="{% static 'js/isotope.min.js' %}"></script>
+  <script src="{% static 'js/baguetteBox.min.js' %}"></script>
+  <script src="{% static 'js/jquery.mapify.js' %}"></script>
+  <script src="{% static 'js/form-validator.min.js' %}"></script>
+    <script src="{% static 'js/contact-form-script.js' %}"></script>
+    <script src="{% static 'js/custom.js' %}"></script>
+  <script>
+    $('.map-full').mapify({
+      points: [
+        {
+          lat: 40.7143528,
+          lng: -74.0059731,
+          marker: true,
+          title: 'Marker title',
+          infoWindow: 'Yamifood Restaurant'
+        }
+      ]
+    }); 
+  </script>
+</body>
+</html>

@@ -1,0 +1,137 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">   
+   
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+    <!-- Site Metas -->
+    <title>MusicHub</title>  
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Site Icons -->
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+    <link rel="apple-touch-icon" href="{% static 'images/apple-touch-icon.png' %}">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min_tim.css' %}">    
+	<!-- Site CSS -->
+    <link rel="stylesheet" href="{% static 'css/style_tim.css' %}">    
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="{% static 'css/responsive_tim.css' %}">
+    <!-- Custom CSS -->
+
+</head>
+
+<body>
+	<!--music-->
+	<iframe style="display:none" src="{% static 'music/page1.mp3' %}" allow="autoplay" id="audio"></iframe>
+	<!-- Start header -->
+	<header class="top-navbar">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<div class="container">
+				<a class="navbar-brand" href="{% url 'index' %}">
+					<img src="{% static 'images/logo.png' %}" alt="" />
+				</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars-rs-food" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
+				  <span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbars-rs-food">
+					<ul class="navbar-nav ml-auto">
+						<li class="nav-item active"><a class="nav-link" href="{% url 'index' %}">首頁</a></li>
+						<li class="nav-item"><a class="nav-link" href="{% url 'produce' %}">創作區</a></li>
+						<li class="nav-item dropdown">
+              				<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">論壇</a>
+              				<div class="dropdown-menu" aria-labelledby="dropdown-a">
+                			{% if user.is_authenticated %}
+                			<a class="dropdown-item" href="/userinfo/">帳號管理</a>
+                			<a class="dropdown-item" href="/forum/">論壇</a>
+                			<a class="dropdown-item" href="/logout/">登出</a>
+                			<a class="dropdown-item" href="/message/all">個人通知</a>
+                			{% else %}
+                			<a class="dropdown-item" href="/regist/">註冊</a>
+                			<a class="dropdown-item" href="/login/">登入</a>
+                			<a class="dropdown-item" href="/forum/">論壇</a>
+                			{% endif %}
+						<li class="nav-item"><a class="nav-link" href="{% url 'database' %}">音樂庫</a></li>
+						<li class="nav-item"><a class="nav-link" href="{% url 'intro' %}">關於我們</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</header>
+	<!-- End header -->
+	
+	<div class="all-page-title page-breadcrumb">
+		<div class="container text-center">
+			<div class="row">
+				<div class="col-lg-12">
+					<strong><h1>關於我們</h1></strong>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- Start About -->
+	<div class="about-section-box">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-6 col-md-6">
+					<img src="{% static 'images/about.jpg'%}" alt="" class="img-fluid">
+				</div>
+				<div class="col-lg-6 col-md-6 text-center">
+					<div class="inner-column">
+						<h1>歡迎來到 <span>MusicHub</span></h1>
+						<p>&nbsp;&nbsp;&nbsp;&nbsp;MusicHub 是一款由國立臺灣科技大學的學生所做出的多功能音樂整合平台，主要是由創作區、互動論壇、及音樂生成區的三大功能組成，透過結合這些功能能讓使用者在使用中可以拋開過去單功能導向的網頁，在創作過程中能夠即時與線上好友討論與分享心得。</p>
+						<p>&nbsp;&nbsp;&nbsp;&nbsp;在創作區中，跳脫以往的複雜介面，透過簡單上手的面板，點擊就能輸入音符，讓初次接觸創作的人們更容易上手，藉此激發他們的興趣，也帶來更多的變化，另外，除了從零開始譜曲的空白頁面外，我們還能讓使用者導入自己喜歡的音樂編輯，讓您不會遇到想半天卻沒靈感的狀況，趕快來體驗看看吧~~</p>
+					</div>
+				</div>
+				<div class="col-md-12">
+					<div class="inner-pt">
+						<p>討論區</p>
+						<p>音樂庫</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End About -->
+
+	<!-- Start Contact info -->
+	<div class="contact-imfo-box">
+		<div class="container"></div>
+	</div>
+	<!-- End Contact info -->
+	
+	<!-- Start Footer -->
+	<footer class="footer-area bg-f">
+		<div class="container">
+			<div class="row">
+				<div><p><br></p></div>
+			</div>
+		</div>
+		
+	</footer>
+	<!-- End Footer -->
+	
+	<a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
+
+	<!-- ALL JS FILES -->
+	<script src="{% static 'js/jquery-3.2.1.min_tim.js' %}"></script>
+	<script src="{% static 'js/popper.min_tim.js' %}"></script>
+	<script src="{% static 'js/bootstrap.min_tim.js' %}"></script>
+    <!-- ALL PLUGINS -->
+	<script src="{% static 'js/jquery.superslides.min_tim.js' %}"></script>
+	<script src="{% static 'js/images-loded.min_tim.js' %}"></script>
+	<script src="{% static 'js/isotope.min_tim.js' %}"></script>
+	<script src="{% static 'js/baguetteBox.min_tim.js' %}"></script>
+	<script src="{% static 'js/form-validator.min_tim.js' %}"></script>
+    <script src="{% static 'js/contact-form-script_tim.js' %}"></script>
+    <script src="{% static 'js/custom_tim.js' %}"></script>
+</body>
+</html>

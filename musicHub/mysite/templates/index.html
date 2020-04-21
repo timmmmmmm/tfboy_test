@@ -1,0 +1,373 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">   
+   
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+    <!-- Site Metas -->
+    <title>MusicHub</title>  
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Site Icons -->
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+    <link rel="apple-touch-icon" href="{% static 'images/apple-touch-icon.png' %}">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min_tim.css' %}">    
+	<!-- Site CSS -->
+    <link rel="stylesheet" href="{% static 'css/style_tim.css' %}">    
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="{% static 'css/responsive_tim.css' %}">
+    <!-- Custom CSS -->
+
+</head>
+
+<body>
+	<!--music-->
+	<iframe style="display:none" src="{% static 'music/page1.mp3' %}" allow="autoplay" id="audio"></iframe>
+	<!-- Start header -->
+	<header class="top-navbar">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<div class="container">
+				<a class="navbar-brand" href="{% url 'index' %}">
+					<img src="{% static 'images/logo.png' %}" alt="" />
+				</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars-rs-food" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
+				  <span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbars-rs-food">
+					<ul class="navbar-nav ml-auto">
+						<li class="nav-item active"><a class="nav-link" href="{% url 'index' %}">首頁</a></li>
+						<li class="nav-item"><a class="nav-link" href="{% url 'produce' %}">創作區</a></li>
+						<li class="nav-item dropdown">
+              				<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">論壇</a>
+              				<div class="dropdown-menu" aria-labelledby="dropdown-a">
+                			{% if user.is_authenticated %}
+                			<a class="dropdown-item" href="/userinfo/">帳號管理</a>
+                			<a class="dropdown-item" href="/forum/">論壇</a>
+                			<a class="dropdown-item" href="/logout/">登出</a>
+                			<a class="dropdown-item" href="/message/all">個人通知</a>
+                			{% else %}
+                			<a class="dropdown-item" href="/regist/">註冊</a>
+                			<a class="dropdown-item" href="/login/">登入</a>
+                			<a class="dropdown-item" href="/forum/">論壇</a>
+                			{% endif %}
+						<li class="nav-item"><a class="nav-link" href="{% url 'database' %}">音樂庫</a></li>
+						<li class="nav-item"><a class="nav-link" href="{% url 'intro' %}">關於我們</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</header>
+	<!-- End header -->
+	
+	<!-- Start slides -->
+	<div id="slides" class="cover-slides">
+		<ul class="slides-container">
+			<li class="text-center">
+				<img src="{% static 'images/slider01.jpg' %}" alt="">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12">
+							<h1 class="m-b-20"><strong>歡迎來到<br> MusicHub</strong></h1>
+							<p class="m-b-40"><strong><br> 
+							對我來說，音樂是靈魂的完美表現。—— 舒曼</strong></p>
+						</div>
+					</div>
+				</div>
+			</li>
+			<li class="text-center">
+				<img src="{% static 'images/slider02.jpg' %}" alt="">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12">
+							<h1 class="m-b-20"><strong>歡迎來到<br> MusicHub</strong></h1>
+							<p class="m-b-40"><strong><br> 
+							音樂是建築在美的基礎上面的一種藝術。——青主</strong></p>
+						</div>
+					</div>
+				</div>
+			</li>
+			<li class="text-center">
+				<img src="{% static 'images/slider03.jpg'' %}" alt="">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12">
+							<h1 class="m-b-20"><strong>歡迎來到<br> MusicHub</strong></h1>
+							<p class="m-b-40"><strong><br> 
+							在真正的音樂中，充滿了一千種心靈的感受，比言詞更好得多。 —— 孟德爾松</strong></p>
+						</div>
+					</div>
+				</div>
+			</li>
+		</ul>
+		<div class="slides-navigation">
+			<a href="#" class="next"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+			<a href="#" class="prev"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
+		</div>
+	</div>
+	<!-- End slides -->
+	
+	<!-- Start News -->
+	<div class="about-section-box">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-6 col-md-6 col-sm-12">
+					<img src="{% static 'images/news.jpg' %}" alt="" class="img-fluid">
+				</div>
+				<div class="col-lg-6 col-md-6 col-sm-12 text-center">
+					<div class="inner-column">
+						<h1><span>本週新聞</span></h1>
+						<h3>小提琴大師將登台</h3>
+						<p>被譽為是音樂神童的小提琴家葛薩琉斯，6歲就上台演出，10歲就拿下國際大賽的冠軍，甚至獲得許多大師的賞識，今年34歲的他，被稱讚是當代最有天份的小提琴家，終於要在2020年4月，二度來台灣演出，同時要和台灣的優秀鋼琴家胡志龍合作，演出好幾首世界經典名曲，其中包括流浪者之歌，還有冥想，喜歡古典音樂的民眾可以把握機會。 </p>
+						<p>薩拉沙泰的經典名曲流浪者之歌，在葛薩琉斯精湛的弓法和詮釋下令人驚艷，即使是彩排每個音符也絲毫不馬虎，小提琴家葛薩琉斯，從小就被稱為是音樂神童，6歲就上台演出，10歲獲得國際大賽冠軍，32歲曾經受到聯合國教科文組織邀請，到法國巴黎詩歌之家音樂廳演出。</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End News -->
+	
+	<!-- Start Qoute -->
+	<div class="qt-box qt-background">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8 ml-auto mr-auto text-left">
+					<p class="lead "><strong>
+						" 音樂是比一切智慧、一切哲學更高的啟示，誰能滲透我音樂的意義，便能超脫尋常人無以自拔的苦難。  "</strong>
+					</p>
+					<span class="lead"><strong>貝多芬</strong></span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End Qoute -->
+	
+	<!-- Start Musician -->
+	<div class="menu-box">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="heading-title text-center">
+						<h2><strong>音樂家介紹</strong></h2>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="special-menu text-center">
+						<div class="button-group filter-button-group">
+							<button class="active" data-filter="*">全部</button>
+							<button data-filter=".drinks">巴洛克</button>
+							<button data-filter=".lunch">古典</button>
+							<button data-filter=".dinner">浪漫</button>
+						</div>
+					</div>
+				</div>
+			</div>
+				
+			<div class="row special-list">
+				<div class="col-lg-4 col-md-6 special-grid drinks">
+					<div class="gallery-single fix">
+						<img src="{% static 'images/img-01.jpg' %}" class="img-fluid" alt="Image">
+						<div class="why-text">
+							<h4>韋瓦第</h4>
+							<p>是一位出生於威尼斯的義大利神父和巴洛克音樂作曲家，同時還是一名大師級小提琴演奏家</p>
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-lg-4 col-md-6 special-grid drinks">
+					<div class="gallery-single fix">
+						<img src="{% static 'images/img-02.jpg' %}" class="img-fluid" alt="Image">
+						<div class="why-text">
+							<h4>巴哈</h4>
+							<p>巴洛克時期的作曲家及演奏家，也是巴洛克的集大成者。巴哈被認為是音樂史上最傑出、最重要的作曲家之一</p>
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-lg-4 col-md-6 special-grid drinks">
+					<div class="gallery-single fix">
+						<img src="{% static 'images/img-03.jpg' %}" class="img-fluid" alt="Image">
+						<div class="why-text">
+							<h4>韓德爾</h4>
+							<p>巴洛克音樂作曲家，創作作品類型有歌劇、神劇、頌歌及管風琴協奏曲，著名作品為《彌賽亞》</p>
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-lg-4 col-md-6 special-grid lunch">
+					<div class="gallery-single fix">
+						<img src="{% static 'images/img-04.jpg' %}" class="img-fluid" alt="Image">
+						<div class="why-text">
+							<h4>海頓</h4>
+							<p>海典、偕丁，奧地利作曲家。海頓是繼巴赫之後又一位偉大的器樂作曲家，是古典主義音樂的傑出代表</p>
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-lg-4 col-md-6 special-grid lunch">
+					<div class="gallery-single fix">
+						<img src="{% static 'images/img-05.jpg' %}" class="img-fluid" alt="Image">
+						<div class="why-text">
+							<h4>莫札特</h4>
+							<p>莫札特是位多產的作曲家，一生創作了600多部作品，幾乎涵蓋所有形式體裁，他將古典時期的音樂風格臻於成熟並發揚光大，對後世有極大影響</p>
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-lg-4 col-md-6 special-grid lunch">
+					<div class="gallery-single fix">
+						<img src="{% static 'images/img-06.jpg' %}" class="img-fluid" alt="Image">
+						<div class="why-text">
+							<h4>貝多芬</h4>
+							<p>德意志作曲家、鋼琴演奏家。貝多芬上承古典樂派傳統，下啟浪漫樂派之風格與精神，因而在音樂史上占有非常重要的地位</p>
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-lg-4 col-md-6 special-grid dinner">
+					<div class="gallery-single fix">
+						<img src="{% static 'images/img-07.jpg' %}" class="img-fluid" alt="Image">
+						<div class="why-text">
+							<h4>舒伯特</h4>
+							<p>神聖羅馬帝國奧地利作曲家，他是早期浪漫主義音樂的代表人物，也被認為是古典主義音樂的最後一位巨匠</p>
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-lg-4 col-md-6 special-grid dinner">
+					<div class="gallery-single fix">
+						<img src="{% static 'images/img-08.jpg' %}" class="img-fluid" alt="Image">
+						<div class="why-text">
+							<h4>蕭邦</h4>
+							<p>波蘭與法國的知名作曲家和鋼琴家，他是歷史上最具影響力和最受歡迎的鋼琴作曲家之一，也是歐洲19世紀浪漫主義音樂的代表人物</p>
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-lg-4 col-md-6 special-grid dinner">
+					<div class="gallery-single fix">
+						<img src="{% static 'images/img-09.jpg' %}" class="img-fluid" alt="Image">
+						<div class="why-text">
+							<h4>李斯特</h4>
+							<p>匈牙利作曲家、鋼琴演奏家，浪漫主義音樂的主要代表人物之一。其所創作的鋼琴曲以難度極高而聞名</p>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+	<!-- End Menu -->
+	
+	<!-- Start Music Knowledge -->
+	<div class="customer-reviews-box">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="heading-title text-center">
+						<h2><strong>樂器小知識</strong></h2>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-8 mr-auto ml-auto text-center">
+					<div id="reviews" class="carousel slide" data-ride="carousel">
+						<div class="carousel-inner mt-4">
+							<div class="carousel-item text-center active">
+								<div class="img-box p-1 border rounded-circle m-auto">
+									<img class="d-block w-100 rounded-circle" src="{% static 'images/instrument1.jpg' %}" alt="">
+								</div>
+								<h5 class="mt-4 mb-0"><strong class="text-warning text-uppercase">鋼琴</strong></h5>
+								<!--<h6 class="text-dark m-0">Web Developer</h6>-->
+								<p class="m-0 pt-3">鋼琴是西洋古典音樂中的一種鍵盤樂器，普遍用於獨奏、重奏、伴奏等演出，用於作曲和排練音樂十分方便。彈奏者通過按下鍵盤上的琴鍵，牽動鋼琴裏面包著絨氈的小木槌，繼而敲擊鋼絲弦發出聲音。鋼琴音域寬廣，音色宏亮、清脆，富於變化，表現力很強。可演奏各種氣勢磅礡、寬廣、抒情的音樂，亦可演奏歡技巧性很高的華彩樂段，在樂隊中則可發揮巨大的作用。鋼琴因其豐富的樂理表達能力，被稱作「樂器之王」。</p>
+							</div>
+							<div class="carousel-item text-center">
+								<div class="img-box p-1 border rounded-circle m-auto">
+									<img class="d-block w-100 rounded-circle" src="{% static 'images/instrument2.jpg' %}" alt="">
+								</div>
+								<h5 class="mt-4 mb-0"><strong class="text-warning text-uppercase">小提琴</strong></h5>
+								<!--<h6 class="text-dark m-0">Web Designer</h6>-->
+								<p class="m-0 pt-3">小提琴屬於四弦的弓弦樂器，是現代管弦樂團弦樂組中最重要的樂器之一，一般在管弦樂作品中會分成第一小提琴與第二小提琴兩個聲部，小提琴主要的特點在於其輝煌的聲音、高度的演奏技巧和豐富、廣泛的表現力，又被稱作為樂器中的女王。小提琴是提琴家族中最小、音高最高的一種，比它體型大的提琴有中提琴、大提琴和低音提琴。</p>
+							</div>
+							<div class="carousel-item text-center">
+								<div class="img-box p-1 border rounded-circle m-auto">
+									<img class="d-block w-100 rounded-circle" src="{% static 'images/instrument3.jpg' %}" alt="">
+								</div>
+								<h5 class="mt-4 mb-0"><strong class="text-warning text-uppercase">鼓</strong></h5>
+								<!--<h6 class="text-dark m-0">Seo Analyst</h6>-->
+								<p class="m-0 pt-3">鼓是一種打擊樂器，也是一種通訊工具，非洲部落用以傳達信息，中國古代軍隊用以發號施令。鼓可以用手或鼓槌敲擊出聲。鼓在非洲的傳統音樂以及在現代音樂中是一種比較重要的樂器，有的樂隊完全由以鼓為主的打擊樂器組成。鼓除了作為樂器外，在古代許多文明中還用鼓來傳播信息。不同類型的鼓，如定音鼓等，均被調校至特定的音調中。更常見的是將不同類型的鼓或打擊樂器互相組合，以構成常於流行音樂出現的爵士鼓。</p>
+							</div>
+							<div class="carousel-item text-center">
+								<div class="img-box p-1 border rounded-circle m-auto">
+									<img class="d-block w-100 rounded-circle" src="{% static 'images/instrument4.jpg' %}" alt="">
+								</div>
+								<h5 class="mt-4 mb-0"><strong class="text-warning text-uppercase">長笛</strong></h5>
+								<!--<h6 class="text-dark m-0">Seo Analyst</h6>-->
+								<p class="m-0 pt-3">長笛是現代管弦樂和室內樂中主要的高音旋律樂器，外型是一根開有數個音孔的圓柱型長管。早期的長笛是烏木或椰木製，現代多使用金屬的材質，比如普通的鎳銀合金到專業型的銀合金，金以及白金等，也有表演者使用特殊的玻璃長笛。傳統木質長笛的音色特點是圓潤、溫暖、細膩，而金屬長笛的音色就比較明亮寬廣。不同材料的長笛完全根據演奏者的愛好選擇。</p>
+							</div>
+							<div class="carousel-item text-center">
+								<div class="img-box p-1 border rounded-circle m-auto">
+									<img class="d-block w-100 rounded-circle" src="{% static 'images/instrument5.jpg' %}" alt="">
+								</div>
+								<h5 class="mt-4 mb-0"><strong class="text-warning text-uppercase">法國號</strong></h5>
+								<!--<h6 class="text-dark m-0">Seo Analyst</h6>-->
+								<p class="m-0 pt-3">法國號是一種中音銅管樂器。也是音域最廣的管樂器之一。法國號的吹管細而長，彎曲構成圓形的軀幹，尾部則擴大成漏斗狀的喇叭口。演奏法國號時，吹奏者經過號嘴，以雙唇振動空氣來發聲，並以左手操作轉閥式按鍵來改變音高；右手放進朝向右後方的喇叭口，用來調節細微的音高起伏。因此，法國號是少數以左手按鍵的銅管樂器。依照其調性，一般常見的法國號可以分類成單調性、雙調性、三調性等種類。</p>
+							</div>
+						</div>
+						<a class="carousel-control-prev" href="#reviews" role="button" data-slide="prev">
+							<i class="fa fa-angle-left" aria-hidden="true"></i>
+							<span class="sr-only">Previous</span>
+						</a>
+						<a class="carousel-control-next" href="#reviews" role="button" data-slide="next">
+							<i class="fa fa-angle-right" aria-hidden="true"></i>
+							<span class="sr-only">Next</span>
+						</a>
+                    </div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End Music Knowledge -->
+	
+	<!-- Start Contact info -->
+	<div class="contact-imfo-box">
+		<div class="container"></div>
+	</div>
+	<!-- End Contact info -->
+	
+	<!-- Start Footer -->
+	<footer class="footer-area bg-f">
+		<div class="container">
+			<div class="row">
+				<div><p><br></p></div>
+			</div>
+		</div>
+		
+	</footer>
+	<!-- End Footer -->
+	
+	<a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
+
+	<!-- ALL JS FILES -->
+	<script src="{% static 'js/jquery-3.2.1.min_tim.js' %}"></script>
+	<script src="{% static 'js/popper.min_tim.js' %}"></script>
+	<script src="{% static 'js/bootstrap.min_tim.js' %}"></script>
+    <!-- ALL PLUGINS -->
+	<script src="{% static 'js/jquery.superslides.min_tim.js' %}"></script>
+	<script src="{% static 'js/images-loded.min_tim.js' %}"></script>
+	<script src="{% static 'js/isotope.min_tim.js' %}"></script>
+	<script src="{% static 'js/baguetteBox.min_tim.js' %}"></script>
+	<script src="{% static 'js/form-validator.min_tim.js' %}"></script>
+    <script src="{% static 'js/contact-form-script_tim.js' %}"></script>
+    <script src="{% static 'js/custom_tim.js' %}"></script>
+</body>
+</html>
